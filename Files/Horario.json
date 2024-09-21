@@ -1,0 +1,503 @@
+{
+    "Controlador.TDA.ListaDinamica.ListaDinamica": {
+        "cabezera": {
+            "info": {
+                "@class": "Modelo.Horario",
+                "IdHorario": 1,
+                "CodigoHorario": "H-0001",
+                "DiaSemana": "Lunes",
+                "HoraIncio": "7:30",
+                "HoraFin": "8:30",
+                "materiaHorario": {
+                    "IdMateria": 4,
+                    "NombreMateria": "Base de datos",
+                    "DescipcionMateria": "Materia introductoria a las base de datos",
+                    "NumeroHoras": 80,
+                    "cicloMateria": {
+                        "IdCiclo": 3,
+                        "NumeroCiclo": 3,
+                        "NombreCiclo": {
+                            "IdNombreCiclo": 3,
+                            "NombreCiclo": "Tercer ciclo"
+                        },
+                        "unidadCurricularCiclo": {
+                            "IdUnidadCurricular": 1,
+                            "CodigoUnidadCurricular": "UC-0001",
+                            "NombreUnidadCurricular": "Unidad basica",
+                            "DescripcionUnidadCurricular": "Abarca 3 primeros ciclos",
+                            "mallaCurricularUnidadCurricular": {
+                                "IdMallaCurricular": 1,
+                                "NombreMallaCurricular": "Primer malla",
+                                "DuracionMallaCurricular": 15,
+                                "EstadoMallaCurricular": "Activa",
+                                "carreraMallaCurricula": {
+                                    "IdCarrera": 1,
+                                    "NombreCarrera": "Ingenieria en sistemas",
+                                    "Duracion": 5,
+                                    "NumeroCiclos": 9,
+                                    "facutadCarrera": {
+                                        "IdFacultad": 1,
+                                        "NombreFacultad": "Energia y recursos no renovables",
+                                        "FechaCreacion": "01\/febrero\/2024",
+                                        "universidadFacultad": {
+                                            "IdUniversidad": 1,
+                                            "NombreUniversidad": "Universida Nacional de Loja",
+                                            "DireccionUniversidad": "Av. Pio Jaramillo Alvarado",
+                                            "NumeroTelefono": "(07) 254-7252",
+                                            "CorreoUniversidad": "unl.unl@unl.edu.ec",
+                                            "FechaFundacion": "31\/diciembre\/1859"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "Siguiente": {
+                "info": {
+                    "@class": "Modelo.Horario",
+                    "IdHorario": 2,
+                    "CodigoHorario": "H-0002",
+                    "DiaSemana": "Lunes",
+                    "HoraIncio": "8:30",
+                    "HoraFin": "9:30",
+                    "materiaHorario": {
+                        "IdMateria": 4,
+                        "NombreMateria": "Base de datos",
+                        "DescipcionMateria": "Materia introductoria a las base de datos",
+                        "NumeroHoras": 80,
+                        "cicloMateria": {
+                            "IdCiclo": 3,
+                            "NumeroCiclo": 3,
+                            "NombreCiclo": {
+                                "IdNombreCiclo": 3,
+                                "NombreCiclo": "Tercer ciclo"
+                            },
+                            "unidadCurricularCiclo": {
+                                "IdUnidadCurricular": 1,
+                                "CodigoUnidadCurricular": "UC-0001",
+                                "NombreUnidadCurricular": "Unidad basica",
+                                "DescripcionUnidadCurricular": "Abarca 3 primeros ciclos",
+                                "mallaCurricularUnidadCurricular": {
+                                    "IdMallaCurricular": 1,
+                                    "NombreMallaCurricular": "Primer malla",
+                                    "DuracionMallaCurricular": 15,
+                                    "EstadoMallaCurricular": "Activa",
+                                    "carreraMallaCurricula": {
+                                        "IdCarrera": 1,
+                                        "NombreCarrera": "Ingenieria en sistemas",
+                                        "Duracion": 5,
+                                        "NumeroCiclos": 9,
+                                        "facutadCarrera": {
+                                            "IdFacultad": 1,
+                                            "NombreFacultad": "Energia y recursos no renovables",
+                                            "FechaCreacion": "01\/febrero\/2024",
+                                            "universidadFacultad": {
+                                                "IdUniversidad": 1,
+                                                "NombreUniversidad": "Universida Nacional de Loja",
+                                                "DireccionUniversidad": "Av. Pio Jaramillo Alvarado",
+                                                "NumeroTelefono": "(07) 254-7252",
+                                                "CorreoUniversidad": "unl.unl@unl.edu.ec",
+                                                "FechaFundacion": "31\/diciembre\/1859"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "Siguiente": {
+                    "info": {
+                        "@class": "Modelo.Horario",
+                        "IdHorario": 3,
+                        "CodigoHorario": "H-0003",
+                        "DiaSemana": "Lunes",
+                        "HoraIncio": "9:30",
+                        "HoraFin": "10:30",
+                        "materiaHorario": {
+                            "IdMateria": 5,
+                            "NombreMateria": "Estructura de datos",
+                            "DescipcionMateria": "Materia introductoria a las estructuras de datos",
+                            "NumeroHoras": 80,
+                            "cicloMateria": {
+                                "IdCiclo": 3,
+                                "NumeroCiclo": 3,
+                                "NombreCiclo": {
+                                    "IdNombreCiclo": 3,
+                                    "NombreCiclo": "Tercer ciclo"
+                                },
+                                "unidadCurricularCiclo": {
+                                    "IdUnidadCurricular": 1,
+                                    "CodigoUnidadCurricular": "UC-0001",
+                                    "NombreUnidadCurricular": "Unidad basica",
+                                    "DescripcionUnidadCurricular": "Abarca 3 primeros ciclos",
+                                    "mallaCurricularUnidadCurricular": {
+                                        "IdMallaCurricular": 1,
+                                        "NombreMallaCurricular": "Primer malla",
+                                        "DuracionMallaCurricular": 15,
+                                        "EstadoMallaCurricular": "Activa",
+                                        "carreraMallaCurricula": {
+                                            "IdCarrera": 1,
+                                            "NombreCarrera": "Ingenieria en sistemas",
+                                            "Duracion": 5,
+                                            "NumeroCiclos": 9,
+                                            "facutadCarrera": {
+                                                "IdFacultad": 1,
+                                                "NombreFacultad": "Energia y recursos no renovables",
+                                                "FechaCreacion": "01\/febrero\/2024",
+                                                "universidadFacultad": {
+                                                    "IdUniversidad": 1,
+                                                    "NombreUniversidad": "Universida Nacional de Loja",
+                                                    "DireccionUniversidad": "Av. Pio Jaramillo Alvarado",
+                                                    "NumeroTelefono": "(07) 254-7252",
+                                                    "CorreoUniversidad": "unl.unl@unl.edu.ec",
+                                                    "FechaFundacion": "31\/diciembre\/1859"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Siguiente": {
+                        "info": {
+                            "@class": "Modelo.Horario",
+                            "IdHorario": 4,
+                            "CodigoHorario": "H-0004",
+                            "DiaSemana": "Lunes",
+                            "HoraIncio": "10:30",
+                            "HoraFin": "11:30",
+                            "materiaHorario": {
+                                "IdMateria": 5,
+                                "NombreMateria": "Estructura de datos",
+                                "DescipcionMateria": "Materia introductoria a las estructuras de datos",
+                                "NumeroHoras": 80,
+                                "cicloMateria": {
+                                    "IdCiclo": 3,
+                                    "NumeroCiclo": 3,
+                                    "NombreCiclo": {
+                                        "IdNombreCiclo": 3,
+                                        "NombreCiclo": "Tercer ciclo"
+                                    },
+                                    "unidadCurricularCiclo": {
+                                        "IdUnidadCurricular": 1,
+                                        "CodigoUnidadCurricular": "UC-0001",
+                                        "NombreUnidadCurricular": "Unidad basica",
+                                        "DescripcionUnidadCurricular": "Abarca 3 primeros ciclos",
+                                        "mallaCurricularUnidadCurricular": {
+                                            "IdMallaCurricular": 1,
+                                            "NombreMallaCurricular": "Primer malla",
+                                            "DuracionMallaCurricular": 15,
+                                            "EstadoMallaCurricular": "Activa",
+                                            "carreraMallaCurricula": {
+                                                "IdCarrera": 1,
+                                                "NombreCarrera": "Ingenieria en sistemas",
+                                                "Duracion": 5,
+                                                "NumeroCiclos": 9,
+                                                "facutadCarrera": {
+                                                    "IdFacultad": 1,
+                                                    "NombreFacultad": "Energia y recursos no renovables",
+                                                    "FechaCreacion": "01\/febrero\/2024",
+                                                    "universidadFacultad": {
+                                                        "IdUniversidad": 1,
+                                                        "NombreUniversidad": "Universida Nacional de Loja",
+                                                        "DireccionUniversidad": "Av. Pio Jaramillo Alvarado",
+                                                        "NumeroTelefono": "(07) 254-7252",
+                                                        "CorreoUniversidad": "unl.unl@unl.edu.ec",
+                                                        "FechaFundacion": "31\/diciembre\/1859"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "Siguiente": {
+                            "info": {
+                                "@class": "Modelo.Horario",
+                                "IdHorario": 5,
+                                "CodigoHorario": "H-0005",
+                                "DiaSemana": "Lunes",
+                                "HoraIncio": "11:30",
+                                "HoraFin": "12:30",
+                                "materiaHorario": {
+                                    "IdMateria": 5,
+                                    "NombreMateria": "Estructura de datos",
+                                    "DescipcionMateria": "Materia introductoria a las estructuras de datos",
+                                    "NumeroHoras": 80,
+                                    "cicloMateria": {
+                                        "IdCiclo": 3,
+                                        "NumeroCiclo": 3,
+                                        "NombreCiclo": {
+                                            "IdNombreCiclo": 3,
+                                            "NombreCiclo": "Tercer ciclo"
+                                        },
+                                        "unidadCurricularCiclo": {
+                                            "IdUnidadCurricular": 1,
+                                            "CodigoUnidadCurricular": "UC-0001",
+                                            "NombreUnidadCurricular": "Unidad basica",
+                                            "DescripcionUnidadCurricular": "Abarca 3 primeros ciclos",
+                                            "mallaCurricularUnidadCurricular": {
+                                                "IdMallaCurricular": 1,
+                                                "NombreMallaCurricular": "Primer malla",
+                                                "DuracionMallaCurricular": 15,
+                                                "EstadoMallaCurricular": "Activa",
+                                                "carreraMallaCurricula": {
+                                                    "IdCarrera": 1,
+                                                    "NombreCarrera": "Ingenieria en sistemas",
+                                                    "Duracion": 5,
+                                                    "NumeroCiclos": 9,
+                                                    "facutadCarrera": {
+                                                        "IdFacultad": 1,
+                                                        "NombreFacultad": "Energia y recursos no renovables",
+                                                        "FechaCreacion": "01\/febrero\/2024",
+                                                        "universidadFacultad": {
+                                                            "IdUniversidad": 1,
+                                                            "NombreUniversidad": "Universida Nacional de Loja",
+                                                            "DireccionUniversidad": "Av. Pio Jaramillo Alvarado",
+                                                            "NumeroTelefono": "(07) 254-7252",
+                                                            "CorreoUniversidad": "unl.unl@unl.edu.ec",
+                                                            "FechaFundacion": "31\/diciembre\/1859"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "Siguiente": {
+                                "info": {
+                                    "@class": "Modelo.Horario",
+                                    "IdHorario": 6,
+                                    "CodigoHorario": "H-0006",
+                                    "DiaSemana": "Lunes",
+                                    "HoraIncio": "12:30",
+                                    "HoraFin": "13:30",
+                                    "materiaHorario": {
+                                        "IdMateria": 6,
+                                        "NombreMateria": "Requisitos de software",
+                                        "DescipcionMateria": "Materia introductoria a los requisitos del sofware",
+                                        "NumeroHoras": 80,
+                                        "cicloMateria": {
+                                            "IdCiclo": 3,
+                                            "NumeroCiclo": 3,
+                                            "NombreCiclo": {
+                                                "IdNombreCiclo": 3,
+                                                "NombreCiclo": "Tercer ciclo"
+                                            },
+                                            "unidadCurricularCiclo": {
+                                                "IdUnidadCurricular": 1,
+                                                "CodigoUnidadCurricular": "UC-0001",
+                                                "NombreUnidadCurricular": "Unidad basica",
+                                                "DescripcionUnidadCurricular": "Abarca 3 primeros ciclos",
+                                                "mallaCurricularUnidadCurricular": {
+                                                    "IdMallaCurricular": 1,
+                                                    "NombreMallaCurricular": "Primer malla",
+                                                    "DuracionMallaCurricular": 15,
+                                                    "EstadoMallaCurricular": "Activa",
+                                                    "carreraMallaCurricula": {
+                                                        "IdCarrera": 1,
+                                                        "NombreCarrera": "Ingenieria en sistemas",
+                                                        "Duracion": 5,
+                                                        "NumeroCiclos": 9,
+                                                        "facutadCarrera": {
+                                                            "IdFacultad": 1,
+                                                            "NombreFacultad": "Energia y recursos no renovables",
+                                                            "FechaCreacion": "01\/febrero\/2024",
+                                                            "universidadFacultad": {
+                                                                "IdUniversidad": 1,
+                                                                "NombreUniversidad": "Universida Nacional de Loja",
+                                                                "DireccionUniversidad": "Av. Pio Jaramillo Alvarado",
+                                                                "NumeroTelefono": "(07) 254-7252",
+                                                                "CorreoUniversidad": "unl.unl@unl.edu.ec",
+                                                                "FechaFundacion": "31\/diciembre\/1859"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "Siguiente": {
+                                    "info": {
+                                        "@class": "Modelo.Horario",
+                                        "IdHorario": 7,
+                                        "CodigoHorario": "H-0007",
+                                        "DiaSemana": "Martes",
+                                        "HoraIncio": "7:30",
+                                        "HoraFin": "8:30",
+                                        "materiaHorario": {
+                                            "IdMateria": 4,
+                                            "NombreMateria": "Base de datos",
+                                            "DescipcionMateria": "Materia introductoria a las base de datos",
+                                            "NumeroHoras": 80,
+                                            "cicloMateria": {
+                                                "IdCiclo": 3,
+                                                "NumeroCiclo": 3,
+                                                "NombreCiclo": {
+                                                    "IdNombreCiclo": 3,
+                                                    "NombreCiclo": "Tercer ciclo"
+                                                },
+                                                "unidadCurricularCiclo": {
+                                                    "IdUnidadCurricular": 1,
+                                                    "CodigoUnidadCurricular": "UC-0001",
+                                                    "NombreUnidadCurricular": "Unidad basica",
+                                                    "DescripcionUnidadCurricular": "Abarca 3 primeros ciclos",
+                                                    "mallaCurricularUnidadCurricular": {
+                                                        "IdMallaCurricular": 1,
+                                                        "NombreMallaCurricular": "Primer malla",
+                                                        "DuracionMallaCurricular": 15,
+                                                        "EstadoMallaCurricular": "Activa",
+                                                        "carreraMallaCurricula": {
+                                                            "IdCarrera": 1,
+                                                            "NombreCarrera": "Ingenieria en sistemas",
+                                                            "Duracion": 5,
+                                                            "NumeroCiclos": 9,
+                                                            "facutadCarrera": {
+                                                                "IdFacultad": 1,
+                                                                "NombreFacultad": "Energia y recursos no renovables",
+                                                                "FechaCreacion": "01\/febrero\/2024",
+                                                                "universidadFacultad": {
+                                                                    "IdUniversidad": 1,
+                                                                    "NombreUniversidad": "Universida Nacional de Loja",
+                                                                    "DireccionUniversidad": "Av. Pio Jaramillo Alvarado",
+                                                                    "NumeroTelefono": "(07) 254-7252",
+                                                                    "CorreoUniversidad": "unl.unl@unl.edu.ec",
+                                                                    "FechaFundacion": "31\/diciembre\/1859"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "Siguiente": {
+                                        "info": {
+                                            "@class": "Modelo.Horario",
+                                            "IdHorario": 8,
+                                            "CodigoHorario": "H-0008",
+                                            "DiaSemana": "Miercoles",
+                                            "HoraIncio": "7:30",
+                                            "HoraFin": "8:30",
+                                            "materiaHorario": {
+                                                "IdMateria": 2,
+                                                "NombreMateria": "Electricidad",
+                                                "DescipcionMateria": "Materia introductoria a la electricidad",
+                                                "NumeroHoras": 80,
+                                                "cicloMateria": {
+                                                    "IdCiclo": 1,
+                                                    "NumeroCiclo": 1,
+                                                    "NombreCiclo": {
+                                                        "IdNombreCiclo": 1,
+                                                        "NombreCiclo": "Primer ciclo"
+                                                    },
+                                                    "unidadCurricularCiclo": {
+                                                        "IdUnidadCurricular": 1,
+                                                        "CodigoUnidadCurricular": "UC-0001",
+                                                        "NombreUnidadCurricular": "Unidad basica",
+                                                        "DescripcionUnidadCurricular": "Abarca 3 primeros ciclos",
+                                                        "mallaCurricularUnidadCurricular": {
+                                                            "IdMallaCurricular": 1,
+                                                            "NombreMallaCurricular": "Primer malla",
+                                                            "DuracionMallaCurricular": 15,
+                                                            "EstadoMallaCurricular": "Activa",
+                                                            "carreraMallaCurricula": {
+                                                                "IdCarrera": 1,
+                                                                "NombreCarrera": "Ingenieria en sistemas",
+                                                                "Duracion": 5,
+                                                                "NumeroCiclos": 9,
+                                                                "facutadCarrera": {
+                                                                    "IdFacultad": 1,
+                                                                    "NombreFacultad": "Energia y recursos no renovables",
+                                                                    "FechaCreacion": "01\/febrero\/2024",
+                                                                    "universidadFacultad": {
+                                                                        "IdUniversidad": 1,
+                                                                        "NombreUniversidad": "Universida Nacional de Loja",
+                                                                        "DireccionUniversidad": "Av. Pio Jaramillo Alvarado",
+                                                                        "NumeroTelefono": "(07) 254-7252",
+                                                                        "CorreoUniversidad": "unl.unl@unl.edu.ec",
+                                                                        "FechaFundacion": "31\/diciembre\/1859"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "Siguiente": {
+                                            "info": {
+                                                "@class": "Modelo.Horario",
+                                                "IdHorario": 9,
+                                                "CodigoHorario": "H-0009",
+                                                "DiaSemana": "Miercoles",
+                                                "HoraIncio": "8:30",
+                                                "HoraFin": "9:30",
+                                                "materiaHorario": {
+                                                    "IdMateria": 2,
+                                                    "NombreMateria": "Electricidad",
+                                                    "DescipcionMateria": "Materia introductoria a la electricidad",
+                                                    "NumeroHoras": 80,
+                                                    "cicloMateria": {
+                                                        "IdCiclo": 1,
+                                                        "NumeroCiclo": 1,
+                                                        "NombreCiclo": {
+                                                            "IdNombreCiclo": 1,
+                                                            "NombreCiclo": "Primer ciclo"
+                                                        },
+                                                        "unidadCurricularCiclo": {
+                                                            "IdUnidadCurricular": 1,
+                                                            "CodigoUnidadCurricular": "UC-0001",
+                                                            "NombreUnidadCurricular": "Unidad basica",
+                                                            "DescripcionUnidadCurricular": "Abarca 3 primeros ciclos",
+                                                            "mallaCurricularUnidadCurricular": {
+                                                                "IdMallaCurricular": 1,
+                                                                "NombreMallaCurricular": "Primer malla",
+                                                                "DuracionMallaCurricular": 15,
+                                                                "EstadoMallaCurricular": "Activa",
+                                                                "carreraMallaCurricula": {
+                                                                    "IdCarrera": 1,
+                                                                    "NombreCarrera": "Ingenieria en sistemas",
+                                                                    "Duracion": 5,
+                                                                    "NumeroCiclos": 9,
+                                                                    "facutadCarrera": {
+                                                                        "IdFacultad": 1,
+                                                                        "NombreFacultad": "Energia y recursos no renovables",
+                                                                        "FechaCreacion": "01\/febrero\/2024",
+                                                                        "universidadFacultad": {
+                                                                            "IdUniversidad": 1,
+                                                                            "NombreUniversidad": "Universida Nacional de Loja",
+                                                                            "DireccionUniversidad": "Av. Pio Jaramillo Alvarado",
+                                                                            "NumeroTelefono": "(07) 254-7252",
+                                                                            "CorreoUniversidad": "unl.unl@unl.edu.ec",
+                                                                            "FechaFundacion": "31\/diciembre\/1859"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ultimo": {
+            "@reference": "..\/cabezera\/Siguiente\/Siguiente\/Siguiente\/Siguiente\/Siguiente\/Siguiente\/Siguiente\/Siguiente"
+        },
+        "Longitud": 9
+    }
+}

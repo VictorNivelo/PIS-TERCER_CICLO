@@ -1,0 +1,66 @@
+{
+    "Controlador.TDA.ListaDinamica.ListaDinamica": {
+        "cabezera": {
+            "info": {
+                "@class": "Modelo.Alumno",
+                "IdAlumno": 1,
+                "EstadoAlumno": "Cursando",
+                "DatosAlumno": {
+                    "IdPersona": 3,
+                    "TipoDni": "Cedula",
+                    "NumeroCedula": 1100000002,
+                    "Nombre": "Mateo",
+                    "Apellido": "Chamba",
+                    "Genero": "No definido",
+                    "FechaNacimineto": "01\/febrero\/2024",
+                    "Direccion": "asd",
+                    "Telefono": "0900000002",
+                    "rolPersona": {
+                        "IdRol": 3,
+                        "NombreRol": "Estudiante",
+                        "DescripcionRol": "Es un Estudiante"
+                    },
+                    "cuentaPersona": {
+                        "IdCuenta": 1,
+                        "Correo": "mateo.chamba@unl.edu.ec",
+                        "Contrasena": 1100000002,
+                        "EstadoCuenta": "Activa"
+                    }
+                }
+            },
+            "Siguiente": {
+                "info": {
+                    "@class": "Modelo.Alumno",
+                    "IdAlumno": 2,
+                    "EstadoAlumno": "Cursando",
+                    "DatosAlumno": {
+                        "IdPersona": 6,
+                        "TipoDni": "Cedula",
+                        "NumeroCedula": 1100000005,
+                        "Nombre": "Juan",
+                        "Apellido": "Armijos",
+                        "Genero": "Masculino",
+                        "FechaNacimineto": "01\/febrero\/2024",
+                        "Direccion": "olja fdsf",
+                        "Telefono": "0900000005",
+                        "rolPersona": {
+                            "IdRol": 3,
+                            "NombreRol": "Estudiante",
+                            "DescripcionRol": "Es un Estudiante"
+                        },
+                        "cuentaPersona": {
+                            "IdCuenta": 1,
+                            "Correo": "juan.armijos@unl.edu.ec",
+                            "Contrasena": 1100000005,
+                            "EstadoCuenta": "Activa"
+                        }
+                    }
+                }
+            }
+        },
+        "ultimo": {
+            "@reference": "..\/cabezera\/Siguiente"
+        },
+        "Longitud": 2
+    }
+}

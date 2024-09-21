@@ -1,0 +1,17 @@
+{
+    "Controlador.TDA.ListaDinamica.ListaDinamica": {
+        "cabezera": {
+            "info": {
+                "@class": "Modelo.PeriodoAcademico",
+                "IdPeriodoAcademino": 1,
+                "FechaInicio": "02\/febrero\/2023",
+                "FechaFin": "02\/febrero\/2024",
+                "EstadoPeriodoAcedemico": "Activo"
+            }
+        },
+        "ultimo": {
+            "@reference": "..\/cabezera"
+        },
+        "Longitud": 1
+    }
+}

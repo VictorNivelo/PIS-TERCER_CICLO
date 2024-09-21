@@ -1,0 +1,183 @@
+{
+    "Controlador.TDA.ListaDinamica.ListaDinamica": {
+        "cabezera": {
+            "info": {
+                "@class": "Modelo.Persona",
+                "IdPersona": 1,
+                "TipoDni": "Cedula",
+                "NumeroCedula": 1100000000,
+                "Nombre": "admin",
+                "Apellido": "admin",
+                "Genero": "Masculino",
+                "FechaNacimineto": "01\/febrero\/2024",
+                "Direccion": "av. s",
+                "Telefono": "0900000000",
+                "rolPersona": {
+                    "IdRol": 1,
+                    "NombreRol": "Personal Administrativo",
+                    "DescripcionRol": "Es un Administrativo"
+                },
+                "cuentaPersona": {
+                    "IdCuenta": 1,
+                    "Correo": "admin.admin@unl.edu.ec",
+                    "Contrasena": 1100000000,
+                    "EstadoCuenta": "Activa"
+                }
+            },
+            "Siguiente": {
+                "info": {
+                    "@class": "Modelo.Persona",
+                    "IdPersona": 2,
+                    "TipoDni": "Cedula",
+                    "NumeroCedula": 1100000001,
+                    "Nombre": "Mario",
+                    "Apellido": "Zambrano",
+                    "Genero": "Masculino",
+                    "FechaNacimineto": "01\/febrero\/2024",
+                    "Direccion": "asv",
+                    "Telefono": "0900000001",
+                    "rolPersona": {
+                        "IdRol": 2,
+                        "NombreRol": "Docente",
+                        "DescripcionRol": "Es un Docente"
+                    },
+                    "cuentaPersona": {
+                        "IdCuenta": 1,
+                        "Correo": "mario.zambrano@unl.edu.ec",
+                        "Contrasena": 1100000001,
+                        "EstadoCuenta": "Activa"
+                    }
+                },
+                "Siguiente": {
+                    "info": {
+                        "@class": "Modelo.Persona",
+                        "IdPersona": 3,
+                        "TipoDni": "Cedula",
+                        "NumeroCedula": 1100000002,
+                        "Nombre": "Mateo",
+                        "Apellido": "Chamba",
+                        "Genero": "No definido",
+                        "FechaNacimineto": "01\/febrero\/2024",
+                        "Direccion": "asd",
+                        "Telefono": "0900000002",
+                        "rolPersona": {
+                            "IdRol": 3,
+                            "NombreRol": "Estudiante",
+                            "DescripcionRol": "Es un Estudiante"
+                        },
+                        "cuentaPersona": {
+                            "IdCuenta": 1,
+                            "Correo": "mateo.chamba@unl.edu.ec",
+                            "Contrasena": 1100000002,
+                            "EstadoCuenta": "Activa"
+                        }
+                    },
+                    "Siguiente": {
+                        "info": {
+                            "@class": "Modelo.Persona",
+                            "IdPersona": 4,
+                            "TipoDni": "Cedula",
+                            "NumeroCedula": 1100000003,
+                            "Nombre": "Jose",
+                            "Apellido": "Guaman",
+                            "Genero": "Masculino",
+                            "FechaNacimineto": "01\/febrero\/2024",
+                            "Direccion": "loja c",
+                            "Telefono": "0900000003",
+                            "rolPersona": {
+                                "IdRol": 2,
+                                "NombreRol": "Docente",
+                                "DescripcionRol": "Es un Docente"
+                            },
+                            "cuentaPersona": {
+                                "IdCuenta": 1,
+                                "Correo": "jose.guaman@unl.edu.ec",
+                                "Contrasena": 1100000003,
+                                "EstadoCuenta": "Activa"
+                            }
+                        },
+                        "Siguiente": {
+                            "info": {
+                                "@class": "Modelo.Persona",
+                                "IdPersona": 5,
+                                "TipoDni": "Cedula",
+                                "NumeroCedula": 1100000004,
+                                "Nombre": "Rene",
+                                "Apellido": "Guaman",
+                                "Genero": "Masculino",
+                                "FechaNacimineto": "01\/febrero\/2024",
+                                "Direccion": "asdsad",
+                                "Telefono": "0900000004",
+                                "rolPersona": {
+                                    "IdRol": 2,
+                                    "NombreRol": "Docente",
+                                    "DescripcionRol": "Es un Docente"
+                                },
+                                "cuentaPersona": {
+                                    "IdCuenta": 1,
+                                    "Correo": "rene.guaman@unl.edu.ec",
+                                    "Contrasena": 1100000004,
+                                    "EstadoCuenta": "Activa"
+                                }
+                            },
+                            "Siguiente": {
+                                "info": {
+                                    "@class": "Modelo.Persona",
+                                    "IdPersona": 6,
+                                    "TipoDni": "Cedula",
+                                    "NumeroCedula": 1100000005,
+                                    "Nombre": "Juan",
+                                    "Apellido": "Armijos",
+                                    "Genero": "Masculino",
+                                    "FechaNacimineto": "01\/febrero\/2024",
+                                    "Direccion": "olja fdsf",
+                                    "Telefono": "0900000005",
+                                    "rolPersona": {
+                                        "IdRol": 3,
+                                        "NombreRol": "Estudiante",
+                                        "DescripcionRol": "Es un Estudiante"
+                                    },
+                                    "cuentaPersona": {
+                                        "IdCuenta": 1,
+                                        "Correo": "juan.armijos@unl.edu.ec",
+                                        "Contrasena": 1100000005,
+                                        "EstadoCuenta": "Activa"
+                                    }
+                                },
+                                "Siguiente": {
+                                    "info": {
+                                        "@class": "Modelo.Persona",
+                                        "IdPersona": 7,
+                                        "TipoDni": "Cedula",
+                                        "NumeroCedula": 1100000006,
+                                        "Nombre": "Cesar",
+                                        "Apellido": "Iñiguez",
+                                        "Genero": "Masculino",
+                                        "FechaNacimineto": "01\/febrero\/2024",
+                                        "Direccion": "fdsf",
+                                        "Telefono": "0900000006",
+                                        "rolPersona": {
+                                            "IdRol": 2,
+                                            "NombreRol": "Docente",
+                                            "DescripcionRol": "Es un Docente"
+                                        },
+                                        "cuentaPersona": {
+                                            "IdCuenta": 1,
+                                            "Correo": "cesar.iñiguez@unl.edu.ec",
+                                            "Contrasena": 1100000006,
+                                            "EstadoCuenta": "Activa"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ultimo": {
+            "@reference": "..\/cabezera\/Siguiente\/Siguiente\/Siguiente\/Siguiente\/Siguiente\/Siguiente"
+        },
+        "Longitud": 7
+    }
+}

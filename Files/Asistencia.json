@@ -1,0 +1,100 @@
+{
+    "Controlador.TDA.ListaDinamica.ListaDinamica": {
+        "cabezera": {
+            "info": {
+                "@class": "Modelo.Asistencia",
+                "IdAsistencia": 1,
+                "FechaAsistencia": "05\/febrero\/2024",
+                "EstadoAsistencia": "Ausente",
+                "Observacion": "as",
+                "horarioAsistencia": {
+                    "IdHorario": 1,
+                    "CodigoHorario": "H-0001",
+                    "DiaSemana": "Lunes",
+                    "HoraIncio": "7:30",
+                    "HoraFin": "8:30",
+                    "materiaHorario": {
+                        "IdMateria": 4,
+                        "NombreMateria": "Base de datos",
+                        "DescipcionMateria": "Materia introductoria a las base de datos",
+                        "NumeroHoras": 80,
+                        "cicloMateria": {
+                            "IdCiclo": 3,
+                            "NumeroCiclo": 3,
+                            "NombreCiclo": {
+                                "IdNombreCiclo": 3,
+                                "NombreCiclo": "Tercer ciclo"
+                            },
+                            "unidadCurricularCiclo": {
+                                "IdUnidadCurricular": 1,
+                                "CodigoUnidadCurricular": "UC-0001",
+                                "NombreUnidadCurricular": "Unidad basica",
+                                "DescripcionUnidadCurricular": "Abarca 3 primeros ciclos",
+                                "mallaCurricularUnidadCurricular": {
+                                    "IdMallaCurricular": 1,
+                                    "NombreMallaCurricular": "Primer malla",
+                                    "DuracionMallaCurricular": 15,
+                                    "EstadoMallaCurricular": "Activa",
+                                    "carreraMallaCurricula": {
+                                        "IdCarrera": 1,
+                                        "NombreCarrera": "Ingenieria en sistemas",
+                                        "Duracion": 5,
+                                        "NumeroCiclos": 9,
+                                        "facutadCarrera": {
+                                            "IdFacultad": 1,
+                                            "NombreFacultad": "Energia y recursos no renovables",
+                                            "FechaCreacion": "01\/febrero\/2024",
+                                            "universidadFacultad": {
+                                                "IdUniversidad": 1,
+                                                "NombreUniversidad": "Universida Nacional de Loja",
+                                                "DireccionUniversidad": "Av. Pio Jaramillo Alvarado",
+                                                "NumeroTelefono": "(07) 254-7252",
+                                                "CorreoUniversidad": "unl.unl@unl.edu.ec",
+                                                "FechaFundacion": "31\/diciembre\/1859"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "alumnoAsistencia": {
+                    "IdAlumno": 1,
+                    "EstadoAlumno": "Cursando",
+                    "DatosAlumno": {
+                        "IdPersona": 3,
+                        "TipoDni": "Cedula",
+                        "NumeroCedula": 1100000002,
+                        "Nombre": "Mateo",
+                        "Apellido": "Chamba",
+                        "Genero": "No definido",
+                        "FechaNacimineto": "01\/febrero\/2024",
+                        "Direccion": "asd",
+                        "Telefono": "0900000002",
+                        "rolPersona": {
+                            "IdRol": 3,
+                            "NombreRol": "Estudiante",
+                            "DescripcionRol": "Es un Estudiante"
+                        },
+                        "cuentaPersona": {
+                            "IdCuenta": 1,
+                            "Correo": "mateo.chamba@unl.edu.ec",
+                            "Contrasena": 1100000002,
+                            "EstadoCuenta": "Activa"
+                        }
+                    }
+                },
+                "TematicaAsistencia": {
+                    "IdTematica": 1,
+                    "NombreTematica": "a",
+                    "FechaTematica": "05\/febrero\/2024"
+                }
+            }
+        },
+        "ultimo": {
+            "@reference": "..\/cabezera"
+        },
+        "Longitud": 1
+    }
+}

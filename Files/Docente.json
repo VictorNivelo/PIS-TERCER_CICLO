@@ -1,0 +1,132 @@
+{
+    "Controlador.TDA.ListaDinamica.ListaDinamica": {
+        "cabezera": {
+            "info": {
+                "@class": "Modelo.Docente",
+                "IdDocente": 1,
+                "Especialidad": "DBA",
+                "Titulacion": "Ingenieria",
+                "AniosExperiencia": 5,
+                "DatosDocente": {
+                    "IdPersona": 2,
+                    "TipoDni": "Cedula",
+                    "NumeroCedula": 1100000001,
+                    "Nombre": "Mario",
+                    "Apellido": "Zambrano",
+                    "Genero": "Masculino",
+                    "FechaNacimineto": "01\/febrero\/2024",
+                    "Direccion": "asv",
+                    "Telefono": "0900000001",
+                    "rolPersona": {
+                        "IdRol": 2,
+                        "NombreRol": "Docente",
+                        "DescripcionRol": "Es un Docente"
+                    },
+                    "cuentaPersona": {
+                        "IdCuenta": 1,
+                        "Correo": "mario.zambrano@unl.edu.ec",
+                        "Contrasena": 1100000001,
+                        "EstadoCuenta": "Activa"
+                    }
+                }
+            },
+            "Siguiente": {
+                "info": {
+                    "@class": "Modelo.Docente",
+                    "IdDocente": 2,
+                    "Especialidad": "Estrucutra de datos",
+                    "Titulacion": "Ingenieria",
+                    "AniosExperiencia": 5,
+                    "DatosDocente": {
+                        "IdPersona": 4,
+                        "TipoDni": "Cedula",
+                        "NumeroCedula": 1100000003,
+                        "Nombre": "Jose",
+                        "Apellido": "Guaman",
+                        "Genero": "Masculino",
+                        "FechaNacimineto": "01\/febrero\/2024",
+                        "Direccion": "loja c",
+                        "Telefono": "0900000003",
+                        "rolPersona": {
+                            "IdRol": 2,
+                            "NombreRol": "Docente",
+                            "DescripcionRol": "Es un Docente"
+                        },
+                        "cuentaPersona": {
+                            "IdCuenta": 1,
+                            "Correo": "jose.guaman@unl.edu.ec",
+                            "Contrasena": 1100000003,
+                            "EstadoCuenta": "Activa"
+                        }
+                    }
+                },
+                "Siguiente": {
+                    "info": {
+                        "@class": "Modelo.Docente",
+                        "IdDocente": 3,
+                        "Especialidad": "Requisitos",
+                        "Titulacion": "Ingenieria",
+                        "AniosExperiencia": 5,
+                        "DatosDocente": {
+                            "IdPersona": 5,
+                            "TipoDni": "Cedula",
+                            "NumeroCedula": 1100000004,
+                            "Nombre": "Rene",
+                            "Apellido": "Guaman",
+                            "Genero": "Masculino",
+                            "FechaNacimineto": "01\/febrero\/2024",
+                            "Direccion": "asdsad",
+                            "Telefono": "0900000004",
+                            "rolPersona": {
+                                "IdRol": 2,
+                                "NombreRol": "Docente",
+                                "DescripcionRol": "Es un Docente"
+                            },
+                            "cuentaPersona": {
+                                "IdCuenta": 1,
+                                "Correo": "rene.guaman@unl.edu.ec",
+                                "Contrasena": 1100000004,
+                                "EstadoCuenta": "Activa"
+                            }
+                        }
+                    },
+                    "Siguiente": {
+                        "info": {
+                            "@class": "Modelo.Docente",
+                            "IdDocente": 4,
+                            "Especialidad": "Electricidad",
+                            "Titulacion": "Ingeniero",
+                            "AniosExperiencia": 8,
+                            "DatosDocente": {
+                                "IdPersona": 7,
+                                "TipoDni": "Cedula",
+                                "NumeroCedula": 1100000006,
+                                "Nombre": "Cesar",
+                                "Apellido": "Iñiguez",
+                                "Genero": "Masculino",
+                                "FechaNacimineto": "01\/febrero\/2024",
+                                "Direccion": "fdsf",
+                                "Telefono": "0900000006",
+                                "rolPersona": {
+                                    "IdRol": 2,
+                                    "NombreRol": "Docente",
+                                    "DescripcionRol": "Es un Docente"
+                                },
+                                "cuentaPersona": {
+                                    "IdCuenta": 1,
+                                    "Correo": "cesar.iñiguez@unl.edu.ec",
+                                    "Contrasena": 1100000006,
+                                    "EstadoCuenta": "Activa"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ultimo": {
+            "@reference": "..\/cabezera\/Siguiente\/Siguiente\/Siguiente"
+        },
+        "Longitud": 4
+    }
+}

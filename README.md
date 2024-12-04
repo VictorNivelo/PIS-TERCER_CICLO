@@ -6,10 +6,7 @@ Proyecto desarrollado para facilitar la gestion de un sistema academico en el am
 
 ### Integrantes:
 
-- Mateo Julián Chamba Ludeña
 - Victor David Nivelo Yaguana
-- Jhostin Gabriel Rojas Salto
-- Geovanny Ismael Romero Suquilanda
 
 El proyecto se basa en el desarrollo de un Tipo de Dato Abstracto conforme a los conceptos aprendidos en la materia de estructura de datos.
 

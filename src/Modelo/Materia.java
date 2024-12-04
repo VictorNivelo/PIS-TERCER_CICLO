@@ -1,7 +1,6 @@
 
 package Modelo;
 
-
 /**
  *
  * @author Victor
@@ -11,12 +10,12 @@ public class Materia {
     private String NombreMateria;
     private String DescipcionMateria;
     private String NumeroHoras;
-    
+
     private Ciclo cicloMateria;
     private Integer CicloID;
-    
+
     public Materia() {
-        
+
     }
 
     public Integer getIdMateria() {
@@ -66,10 +65,10 @@ public class Materia {
     public void setCicloID(Integer CicloID) {
         this.CicloID = CicloID;
     }
-    
+
     @Override
     public String toString() {
-        return NombreMateria+"\n";
+        return NombreMateria + "\n";
     }
-    
+
 }

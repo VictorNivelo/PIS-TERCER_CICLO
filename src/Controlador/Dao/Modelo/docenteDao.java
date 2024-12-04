@@ -9,7 +9,7 @@ import Modelo.Docente;
  *
  * @author Victor
  */
-public class docenteDao extends DaoImplement<Docente>{
+public class docenteDao extends DaoImplement<Docente> {
     private ListaDinamica<Docente> listaDocentes = new ListaDinamica<>();
     private Docente docentes;
 
@@ -27,7 +27,7 @@ public class docenteDao extends DaoImplement<Docente>{
     }
 
     public Docente getDocentes() {
-        if(docentes == null){
+        if (docentes == null) {
             docentes = new Docente();
         }
         return docentes;
@@ -36,10 +36,10 @@ public class docenteDao extends DaoImplement<Docente>{
     public void setDocentes(Docente docentes) {
         this.docentes = docentes;
     }
-    
-    public Boolean Persist(){
-        docentes.setIdDocente(all().getLongitud()+1);
+
+    public Boolean Persist() {
+        docentes.setIdDocente(all().getLongitud() + 1);
         return Persist(docentes);
     }
-    
+
 }

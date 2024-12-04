@@ -9,11 +9,10 @@ import Modelo.Paralelo;
  *
  * @author Victor
  */
-public class paraleloDao extends DaoImplement<Paralelo>{
-    
+public class paraleloDao extends DaoImplement<Paralelo> {
     private ListaDinamica<Paralelo> ListaParalelo;
     private Paralelo paralelo;
-    
+
     public paraleloDao() {
         super(Paralelo.class);
     }
@@ -28,7 +27,7 @@ public class paraleloDao extends DaoImplement<Paralelo>{
     }
 
     public Paralelo getParalelo() {
-        if(paralelo == null){
+        if (paralelo == null) {
             paralelo = new Paralelo();
         }
         return paralelo;
@@ -37,10 +36,10 @@ public class paraleloDao extends DaoImplement<Paralelo>{
     public void setParalelo(Paralelo paralelo) {
         this.paralelo = paralelo;
     }
-    
-    public Boolean persist(){
-        paralelo.setIdParalelo(all().getLongitud()+1);
+
+    public Boolean persist() {
+        paralelo.setIdParalelo(all().getLongitud() + 1);
         return Persist(paralelo);
     }
-    
+
 }

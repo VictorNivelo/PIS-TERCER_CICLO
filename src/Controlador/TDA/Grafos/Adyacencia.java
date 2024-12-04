@@ -10,13 +10,13 @@ public class Adyacencia {
     private Double Peso;
 
     public Adyacencia() {
-        
+
     }
 
     public Adyacencia(Integer Destino, Double Peso) {
         this.Destino = Destino;
         this.Peso = Peso;
-    }    
+    }
 
     public Integer getDestino() {
         return Destino;
@@ -33,5 +33,5 @@ public class Adyacencia {
     public void setPeso(Double Peso) {
         this.Peso = Peso;
     }
-    
+
 }

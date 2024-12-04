@@ -11,7 +11,6 @@ import java.io.IOException;
  * @author Victor
  */
 public class cicloDaoBD extends AdaptadorDaoBD<Ciclo> {
-
     private ListaDinamica<Ciclo> ListaAsistencias;
     private Ciclo asistencias = new Ciclo();
     private Integer Indice = -1;
@@ -56,7 +55,7 @@ public class cicloDaoBD extends AdaptadorDaoBD<Ciclo> {
         try {
             modificar(this.asistencias);
             return true;
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
             return false;

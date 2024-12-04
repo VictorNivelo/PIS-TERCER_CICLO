@@ -12,7 +12,7 @@ public class Cuenta {
     private String EstadoCuenta;
 
     public Cuenta() {
-        
+
     }
 
     public Integer getIdCuenta() {
@@ -46,10 +46,11 @@ public class Cuenta {
     public void setEstadoCuenta(String EstadoCuenta) {
         this.EstadoCuenta = EstadoCuenta;
     }
-    
+
     @Override
     public String toString() {
-        return "idCuenta=" + IdCuenta + ", Correo=" + Correo + ", Contrasena=" + Contrasena + ", EstadoCuenta=" + EstadoCuenta;
+        return "idCuenta=" + IdCuenta + ", Correo=" + Correo + ", Contrasena=" + Contrasena + ", EstadoCuenta="
+                + EstadoCuenta;
     }
-    
+
 }

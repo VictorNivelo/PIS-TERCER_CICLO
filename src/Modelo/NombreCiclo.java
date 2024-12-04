@@ -10,7 +10,7 @@ public class NombreCiclo {
     private String NombreCiclo;
 
     public NombreCiclo() {
-        
+
     }
 
     public Integer getIdNombreCiclo() {
@@ -28,10 +28,10 @@ public class NombreCiclo {
     public void setNombreCiclo(String NombreCiclo) {
         this.NombreCiclo = NombreCiclo;
     }
-    
+
     @Override
     public String toString() {
         return NombreCiclo;
     }
-    
+
 }

@@ -15,7 +15,7 @@ public class Presentacion {
     private String EstadoPresentacion;
 
     public Presentacion() {
-        
+
     }
 
     public String getTitulo() {
@@ -33,7 +33,7 @@ public class Presentacion {
     public void setTiempo(String Tiempo) {
         this.Tiempo = Tiempo;
     }
-            
+
     public Integer getIdPresentacion() {
         return IdPresentacion;
     }
@@ -78,5 +78,5 @@ public class Presentacion {
     public String toString() {
         return Codigo + "\n";
     }
-    
+
 }

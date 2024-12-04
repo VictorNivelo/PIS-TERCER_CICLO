@@ -9,12 +9,12 @@ import Modelo.Universidad;
  *
  * @author Victor
  */
-public class universidadDao extends DaoImplement<Universidad>{
+public class universidadDao extends DaoImplement<Universidad> {
     private ListaDinamica<Universidad> ListaUniversidad = new ListaDinamica<>();
     private Universidad universidad;
-    
-    public universidadDao(){
-        super (Universidad.class);
+
+    public universidadDao() {
+        super(Universidad.class);
     }
 
     public ListaDinamica<Universidad> getListaUniversid() {
@@ -27,7 +27,7 @@ public class universidadDao extends DaoImplement<Universidad>{
     }
 
     public Universidad getUniversidad() {
-        if(universidad == null){
+        if (universidad == null) {
             universidad = new Universidad();
         }
         return universidad;
@@ -36,10 +36,10 @@ public class universidadDao extends DaoImplement<Universidad>{
     public void setUniversidad(Universidad universidades) {
         this.universidad = universidades;
     }
-    
-    public Boolean Persist(){
-        universidad.setIdU(all().getLongitud()+1);
+
+    public Boolean Persist() {
+        universidad.setIdU(all().getLongitud() + 1);
         return Persist(universidad);
     }
-    
+
 }

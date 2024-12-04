@@ -15,8 +15,8 @@ public class ControladorMatricula {
     public ControladorMatricula() {
         ListaMatriculas = new ListaDinamica<>();
     }
-    
-    public Boolean guardarMatricula(){
+
+    public Boolean guardarMatricula() {
         getMatricula().setIdMatricula(getListaMatriculas().getLongitud());
         getListaMatriculas().Agregar(getMatricula());
         return true;
@@ -40,5 +40,5 @@ public class ControladorMatricula {
     public void setMatricula(Matricula matricula) {
         this.matricula = matricula;
     }
-    
+
 }

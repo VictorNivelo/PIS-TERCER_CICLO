@@ -11,7 +11,6 @@ import java.io.IOException;
  * @author Victor
  */
 public class universidadDaoBD extends AdaptadorDaoBD<Universidad> {
-
     private ListaDinamica<Universidad> ListaUniversidad;
     private Universidad universidad = new Universidad();
     private Integer Indice = -1;
@@ -33,7 +32,7 @@ public class universidadDaoBD extends AdaptadorDaoBD<Universidad> {
     }
 
     public Universidad getUniversidad() {
-        if(universidad == null){
+        if (universidad == null) {
             universidad = new Universidad();
         }
         return universidad;
@@ -54,20 +53,20 @@ public class universidadDaoBD extends AdaptadorDaoBD<Universidad> {
     public Boolean GuardarBD() throws Exception {
         return super.guardarb(this.universidad);
     }
-    
-//    public Integer save() throws Exception {
-//        return super.guardar(this.universidad, "SQC_UNIVERSIDAD");
-//    }
+
+    // public Integer save() throws Exception {
+    // return super.guardar(this.universidad, "SQC_UNIVERSIDAD");
+    // }
 
     public Boolean Modificar() throws IOException {
         try {
             modificar(this.universidad);
             return true;
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
-    
+
 }

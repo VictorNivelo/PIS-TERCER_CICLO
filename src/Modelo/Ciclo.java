@@ -1,7 +1,6 @@
 
 package Modelo;
 
-
 /**
  *
  * @author Victor
@@ -9,7 +8,7 @@ package Modelo;
 public class Ciclo {
     private Integer IdCiclo;
     private Integer NumeroCiclo;
-    
+
     private NombreCiclo NombreCiclo;
     private Integer NombreCicloID;
 
@@ -17,9 +16,9 @@ public class Ciclo {
     private Integer UnidadCurricularID;
 
     public Ciclo() {
-        
+
     }
-    
+
     public Integer getIdCiclo() {
         return IdCiclo;
     }
@@ -70,7 +69,7 @@ public class Ciclo {
 
     @Override
     public String toString() {
-        return NombreCiclo+"\n";
+        return NombreCiclo + "\n";
     }
-    
+
 }

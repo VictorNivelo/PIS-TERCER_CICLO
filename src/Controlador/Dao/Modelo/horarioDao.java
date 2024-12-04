@@ -10,8 +10,7 @@ import Modelo.Horario;
  * @author Victor
  */
 public class horarioDao extends DaoImplement<Horario> {
-
-    private ListaDinamica<Horario> ListaHorario= new ListaDinamica<>();
+    private ListaDinamica<Horario> ListaHorario = new ListaDinamica<>();
     private Horario horarios;
 
     public horarioDao() {
@@ -28,7 +27,7 @@ public class horarioDao extends DaoImplement<Horario> {
     }
 
     public Horario getHorarios() {
-        if(horarios == null){
+        if (horarios == null) {
             horarios = new Horario();
         }
         return horarios;
@@ -37,10 +36,10 @@ public class horarioDao extends DaoImplement<Horario> {
     public void setHorarios(Horario horarios) {
         this.horarios = horarios;
     }
-    
+
     public Boolean Persist() {
         horarios.setIdHorario(all().getLongitud() + 1);
         return Persist(horarios);
     }
-    
+
 }

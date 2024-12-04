@@ -11,7 +11,7 @@ public class Rol {
     private String DescripcionRol;
 
     public Rol() {
-        
+
     }
 
     public Integer getIdRol() {
@@ -42,5 +42,5 @@ public class Rol {
     public String toString() {
         return NombreRol;
     }
-    
+
 }

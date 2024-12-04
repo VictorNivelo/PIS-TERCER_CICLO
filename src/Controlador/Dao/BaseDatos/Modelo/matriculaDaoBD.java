@@ -11,7 +11,6 @@ import java.io.IOException;
  * @author romer
  */
 public class matriculaDaoBD extends AdaptadorDaoBD<Matricula> {
-
     private ListaDinamica<Matricula> ListaAsistencias;
     private Matricula asistencias = new Matricula();
     private Integer Indice = -1;
@@ -56,7 +55,7 @@ public class matriculaDaoBD extends AdaptadorDaoBD<Matricula> {
         try {
             modificar(this.asistencias);
             return true;
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
             return false;

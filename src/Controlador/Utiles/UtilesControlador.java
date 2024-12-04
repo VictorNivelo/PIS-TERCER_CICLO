@@ -16,65 +16,65 @@ import javax.swing.JTextField;
  * @author Victor
  */
 public class UtilesControlador {
-    
+
     public static boolean validarFecha(String fecha) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH);
         sdf.setLenient(false);
-
         try {
             sdf.parse(fecha);
             return true;
-        } 
+        }
         catch (ParseException e) {
             System.out.println("Error al parsear la fecha: " + e.getMessage());
             return false;
         }
     }
-    
-    public static Date setDateFormat(JTextField texto) throws ParseException{
+
+    public static Date setDateFormat(JTextField texto) throws ParseException {
         return new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).parse(texto.getText());
     }
-    
+
     public static String obtenerFechaHoraActualFormateada() {
         Date fechaHoraActual = new Date();
         SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH);
         return formateador.format(fechaHoraActual);
     }
-    
+
     private static Field getField(Class<?> clazz, String fieldName) {
         while (clazz != null) {
             try {
                 return clazz.getDeclaredField(fieldName);
-            } 
+            }
             catch (NoSuchFieldException e) {
                 clazz = clazz.getSuperclass();
             }
         }
         return null;
     }
-    
-//    @SuppressWarnings("unchecked")
-//    private static <T> boolean comparar(T elemento1, T elemento2, String campo, Integer orden) {
-//        try {
-//            Field field = getField(elemento1.getClass(), campo);
-//            field.setAccessible(true);
-//
-//            if (Comparable.class.isAssignableFrom(field.getType())) {
-//                Comparable<Object> valor1 = (Comparable<Object>) field.get(elemento1);
-//                Comparable<Object> valor2 = (Comparable<Object>) field.get(elemento2);
-//                int resultadoComparacion = valor1.compareTo(valor2);
-//                return orden == 1 ? resultadoComparacion > 0 : resultadoComparacion < 0;
-//            } 
-//            else {
-//                throw new IllegalArgumentException("El campo no es comparable");
-//            }
-//        } 
-//        catch (IllegalAccessException e) {
-//            
-//            return false;
-//        }
-//    }
-    
+
+    // @SuppressWarnings("unchecked")
+    // private static <T> boolean comparar(T elemento1, T elemento2, String campo,
+    // Integer orden) {
+    // try {
+    // Field field = getField(elemento1.getClass(), campo);
+    // field.setAccessible(true);
+    //
+    // if (Comparable.class.isAssignableFrom(field.getType())) {
+    // Comparable<Object> valor1 = (Comparable<Object>) field.get(elemento1);
+    // Comparable<Object> valor2 = (Comparable<Object>) field.get(elemento2);
+    // int resultadoComparacion = valor1.compareTo(valor2);
+    // return orden == 1 ? resultadoComparacion > 0 : resultadoComparacion < 0;
+    // }
+    // else {
+    // throw new IllegalArgumentException("El campo no es comparable");
+    // }
+    // }
+    // catch (IllegalAccessException e) {
+    //
+    // return false;
+    // }
+    // }
+
     @SuppressWarnings({ "unchecked", "unused" })
     private static <T> boolean comparar(T elemento1, T elemento2, String campo, Integer orden) {
         try {
@@ -86,17 +86,18 @@ public class UtilesControlador {
                 Comparable<Object> comparable2 = (Comparable<Object>) valor2;
                 int resultadoComparacion = comparable1.compareTo(valor2);
                 return orden == 1 ? resultadoComparacion > 0 : resultadoComparacion < 0;
-            } 
+            }
             else {
                 throw new IllegalArgumentException("El campo no es comparable");
             }
-        } 
+        }
         catch (Exception e) {
             return false;
         }
     }
 
-    private static Object obtenerValorCampo(Object objeto, String[] campos) throws IllegalAccessException, NoSuchFieldException {
+    private static Object obtenerValorCampo(Object objeto, String[] campos)
+            throws IllegalAccessException, NoSuchFieldException {
         Object valor = objeto;
         for (String campo : campos) {
             Field field = valor.getClass().getDeclaredField(campo);
@@ -106,16 +107,15 @@ public class UtilesControlador {
         return valor;
     }
 
-    public static <T> ListaDinamica<T> SelectSort(ListaDinamica<T> lista, Integer Orden, String Campo) throws ListaVacia, Exception {
+    public static <T> ListaDinamica<T> SelectSort(ListaDinamica<T> lista, Integer Orden, String Campo)
+            throws ListaVacia, Exception {
         Integer n = lista.getLongitud();
         T[] elementos = lista.toArray();
         Field atributo = getField(elementos[0].getClass(), Campo);
-
         if (atributo != null) {
             for (int i = 0; i < n - 1; i++) {
                 int k = i;
                 T elementoOrden = elementos[i];
-
                 for (int j = i + 1; j < n; j++) {
                     if (comparar(elementos[j], elementoOrden, Campo, Orden)) {
                         elementoOrden = elementos[j];
@@ -125,18 +125,16 @@ public class UtilesControlador {
                 elementos[k] = elementos[i];
                 elementos[i] = elementoOrden;
             }
-        } 
+        }
         else {
             throw new Exception("No existe el criterio de búsqueda");
         }
-
         return lista.toList(elementos);
     }
 
     public static <T> ListaDinamica<T> ShellSort(ListaDinamica<T> lista, Integer Orden, String Campo) {
         int n = lista.getLongitud();
         T[] elementos = lista.toArray();
-
         for (int intervalo = n / 2; intervalo > 0; intervalo /= 2) {
             for (int i = intervalo; i < n; i++) {
                 T ayuda = elementos[i];
@@ -150,7 +148,8 @@ public class UtilesControlador {
         return lista.toList(elementos);
     }
 
-    public static <T> ListaDinamica<T> QuickSort(ListaDinamica<T> lista, Integer Orden, String Campo) throws ListaVacia, PosicionNoEncontrada {
+    public static <T> ListaDinamica<T> QuickSort(ListaDinamica<T> lista, Integer Orden, String Campo)
+            throws ListaVacia, PosicionNoEncontrada {
         if (lista == null || lista.getLongitud() <= 1) {
             return lista;
         }
@@ -158,7 +157,8 @@ public class UtilesControlador {
         return lista;
     }
 
-    private static <T> void QuickSortRecursivo(ListaDinamica<T> lista, int inicio, int fin, Integer orden, String Campo) throws ListaVacia, PosicionNoEncontrada {
+    private static <T> void QuickSortRecursivo(ListaDinamica<T> lista, int inicio, int fin, Integer orden, String Campo)
+            throws ListaVacia, PosicionNoEncontrada {
         if (inicio < fin) {
             int indiceParticion = Particionar(lista, inicio, fin, orden, Campo);
             QuickSortRecursivo(lista, inicio, indiceParticion - 1, orden, Campo);
@@ -166,10 +166,10 @@ public class UtilesControlador {
         }
     }
 
-    private static <T> int Particionar(ListaDinamica<T> lista, int inicio, int fin, Integer orden, String Campo) throws ListaVacia, PosicionNoEncontrada {
+    private static <T> int Particionar(ListaDinamica<T> lista, int inicio, int fin, Integer orden, String Campo)
+            throws ListaVacia, PosicionNoEncontrada {
         T pivote = lista.getInfo(fin);
         int i = inicio - 1;
-
         for (int j = inicio; j < fin; j++) {
             if (comparar(pivote, lista.getInfo(j), Campo, orden)) {
                 i++;
@@ -187,19 +187,17 @@ public class UtilesControlador {
     }
 
     @SuppressWarnings("unused")
-    public static <T> ListaDinamica<T> BusquedaBinaria(ListaDinamica<T> lista, String Busqueda, String Campo) throws ListaVacia, PosicionNoEncontrada {
+    public static <T> ListaDinamica<T> BusquedaBinaria(ListaDinamica<T> lista, String Busqueda, String Campo)
+            throws ListaVacia, PosicionNoEncontrada {
         ListaDinamica<T> listaOrdenada = QuickSort(lista, 1, Campo);
         ListaDinamica<T> ListaElementos = new ListaDinamica<>();
-
         boolean encontrado = false;
         int inicio = 0;
         int fin = listaOrdenada.getLongitud() - 1;
-
         while (inicio <= fin) {
             int medio = (inicio + fin) / 2;
             T Mitad = listaOrdenada.getInfo(medio);
             Field campo = getField(Mitad.getClass(), Campo);
-
             try {
                 campo.setAccessible(true);
                 Object ObjetoMitad = campo.get(Mitad);
@@ -212,11 +210,10 @@ public class UtilesControlador {
                         T elementoAnterior = listaOrdenada.getInfo(j);
                         Object valorAnteriorObj = campo.get(elementoAnterior);
                         String valorAnterior = (valorAnteriorObj != null) ? valorAnteriorObj.toString() : "";
-
                         if (valorAnterior.toLowerCase().contains(Busqueda.trim().toLowerCase())) {
                             ListaElementos.AgregarFinal(elementoAnterior);
                             j--;
-                        } 
+                        }
                         else {
                             break;
                         }
@@ -226,43 +223,41 @@ public class UtilesControlador {
                         T elementoSiguiente = listaOrdenada.getInfo(i);
                         Object valorSiguienteObj = campo.get(elementoSiguiente);
                         String valorSiguiente = (valorSiguienteObj != null) ? valorSiguienteObj.toString() : "";
-
                         if (valorSiguiente.toLowerCase().contains(Busqueda.trim().toLowerCase())) {
                             ListaElementos.AgregarFinal(elementoSiguiente);
                             i++;
-                        } 
+                        }
                         else {
                             break;
                         }
                     }
                     break;
-                } 
+                }
                 else {
                     String valorABuscar = Busqueda;
                     if (valorMedio.compareToIgnoreCase(valorABuscar) > 0) {
                         fin = medio - 1;
-                    } 
+                    }
                     else {
                         inicio = medio + 1;
                     }
                 }
-            } 
+            }
             catch (IllegalAccessException e) {
-                
+                e.printStackTrace();
             }
         }
         return ListaElementos;
     }
-    
-    public static <T> ListaDinamica<T> BusquedaLineal(ListaDinamica<T> lista, String busqueda, String campo) throws ListaVacia, PosicionNoEncontrada {
+
+    public static <T> ListaDinamica<T> BusquedaLineal(ListaDinamica<T> lista, String busqueda, String campo)
+            throws ListaVacia, PosicionNoEncontrada {
         ListaDinamica<T> resultado = new ListaDinamica<>();
         Integer ultimaPosicionOcupada = lista.getLongitud();
-
         for (int i = 0; i < ultimaPosicionOcupada; i++) {
             T elemento = lista.getInfo(i);
             try {
                 Field campoObjeto = getField(elemento.getClass(), campo);
-
                 if (campoObjeto != null) {
                     campoObjeto.setAccessible(true);
                     Object valorObj = campoObjeto.get(elemento);
@@ -272,17 +267,14 @@ public class UtilesControlador {
                         continue;
                     }
                 }
-
                 String[] subcampos = campo.split("\\.");
                 Object objetoActual = elemento;
-
                 for (String subcampo : subcampos) {
                     Field subcampoObjeto = getField(objetoActual.getClass(), subcampo);
-
                     if (subcampoObjeto != null) {
                         subcampoObjeto.setAccessible(true);
                         objetoActual = subcampoObjeto.get(objetoActual);
-                    } 
+                    }
                     else {
                         objetoActual = null;
                         break;
@@ -290,25 +282,24 @@ public class UtilesControlador {
                 }
                 if (objetoActual != null) {
                     String valorCampo = objetoActual.toString();
-
                     if (buscarTipoEspecifico(valorCampo, busqueda)) {
                         resultado.AgregarFinal(elemento);
                     }
                 }
-            } 
+            }
             catch (IllegalAccessException e) {
-                
+                e.printStackTrace();
             }
         }
         return resultado;
     }
-    
+
     private static boolean buscarTipoEspecifico(String texto, String busqueda) {
         String textoSinEspacios = texto.replaceAll("\\s", "").replaceAll("[^a-zA-Z0-9]", "");
         String busquedaSinEspacios = busqueda.replaceAll("\\s", "").replaceAll("[^a-zA-Z0-9]", "");
         return textoSinEspacios.toLowerCase().startsWith(busquedaSinEspacios.toLowerCase());
     }
-    
+
     private static Boolean stringLength(String string, int length) {
         if (string.length() == length)
             return true;
@@ -338,7 +329,7 @@ public class UtilesControlador {
                 byte verifier = Byte.parseByte(data[0] + data[1]);
                 byte[] digits = new byte[9];
                 for (byte i = 0; i < 9; i++)
-                    digits[i] = Byte.parseByte(data[i]);        
+                    digits[i] = Byte.parseByte(data[i]);
                 if (verifier >= 1 && verifier <= 24) {
                     verifier = digits[2];
                     if (verifier <= 6) {
@@ -347,31 +338,34 @@ public class UtilesControlador {
                     }
                 }
             }
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
         }
         return false;
     }
-    
+
     public static String getDirPoject() {
         return System.getProperty("user.dir");
     }
-    
+
     public static String getOS() {
         return System.getProperty("os.name");
     }
-    
-    public static void abrirNavegadorPredeterminadorWindows(String url) throws Exception{
+
+    @SuppressWarnings("deprecation")
+    public static void abrirNavegadorPredeterminadorWindows(String url) throws Exception {
         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
     }
-    
-    public static void abrirNavegadorPredeterminadorLinux(String url) throws Exception{
+
+    @SuppressWarnings("deprecation")
+    public static void abrirNavegadorPredeterminadorLinux(String url) throws Exception {
         Runtime.getRuntime().exec("xdg-open " + url);
     }
-    
-    public static void abrirNavegadorPredeterminadorMacOsx(String url) throws Exception{
+
+    @SuppressWarnings("deprecation")
+    public static void abrirNavegadorPredeterminadorMacOsx(String url) throws Exception {
         Runtime.getRuntime().exec("open " + url);
     }
-    
+
 }

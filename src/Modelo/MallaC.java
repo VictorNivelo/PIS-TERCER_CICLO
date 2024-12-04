@@ -10,12 +10,12 @@ public class MallaC {
     private String NombreMallaCurricular;
     private Integer DuracionMallaCurricular;
     private String EstadoMallaCurricular;
-    
+
     private Carrera carreraMallaCurricula;
     private Integer CarreraID;
-    
+
     public MallaC() {
-        
+
     }
 
     public Integer getIdMallaCurricular() {
@@ -65,10 +65,10 @@ public class MallaC {
     public void setCarreraID(Integer CarreraID) {
         this.CarreraID = CarreraID;
     }
-    
+
     @Override
     public String toString() {
-        return NombreMallaCurricular +  "\n";
+        return NombreMallaCurricular + "\n";
     }
-    
+
 }

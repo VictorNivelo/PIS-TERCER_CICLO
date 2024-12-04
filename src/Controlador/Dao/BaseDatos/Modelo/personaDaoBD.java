@@ -11,7 +11,6 @@ import java.io.IOException;
  * @author Victor
  */
 public class personaDaoBD extends AdaptadorDaoBD<Persona> {
-
     private ListaDinamica<Persona> ListaAsistencias;
     private Persona asistencias = new Persona();
     private Integer Indice = -1;
@@ -56,11 +55,11 @@ public class personaDaoBD extends AdaptadorDaoBD<Persona> {
         try {
             modificar(this.asistencias);
             return true;
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
-    
+
 }

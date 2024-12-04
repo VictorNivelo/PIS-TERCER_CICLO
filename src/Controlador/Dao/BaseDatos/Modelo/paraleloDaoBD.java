@@ -11,7 +11,6 @@ import java.io.IOException;
  * @author Victor
  */
 public class paraleloDaoBD extends AdaptadorDaoBD<Paralelo> {
-
     private ListaDinamica<Paralelo> ListaAsistencias;
     private Paralelo asistencias = new Paralelo();
     private Integer Indice = -1;
@@ -56,7 +55,7 @@ public class paraleloDaoBD extends AdaptadorDaoBD<Paralelo> {
         try {
             modificar(this.asistencias);
             return true;
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
             return false;

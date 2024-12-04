@@ -9,12 +9,12 @@ import Modelo.UnidadCurricular;
  *
  * @author Victor
  */
-public class unidadCurricularDao extends DaoImplement<UnidadCurricular>{
+public class unidadCurricularDao extends DaoImplement<UnidadCurricular> {
     private ListaDinamica<UnidadCurricular> ListaUnidadCurricular = new ListaDinamica<>();
     private UnidadCurricular unidadCurriculares;
-    
-    public unidadCurricularDao(){
-        super (UnidadCurricular.class);
+
+    public unidadCurricularDao() {
+        super(UnidadCurricular.class);
     }
 
     public ListaDinamica<UnidadCurricular> getListaUnidadCurricular() {
@@ -27,7 +27,7 @@ public class unidadCurricularDao extends DaoImplement<UnidadCurricular>{
     }
 
     public UnidadCurricular getUnidadCurriculares() {
-        if(unidadCurriculares == null){
+        if (unidadCurriculares == null) {
             unidadCurriculares = new UnidadCurricular();
         }
         return unidadCurriculares;
@@ -37,8 +37,8 @@ public class unidadCurricularDao extends DaoImplement<UnidadCurricular>{
         this.unidadCurriculares = unidadCurriculares;
     }
 
-    public Boolean Persist(){
-        unidadCurriculares.setIdUnidadCurricular(all().getLongitud()+1);
+    public Boolean Persist() {
+        unidadCurriculares.setIdUnidadCurricular(all().getLongitud() + 1);
         return Persist(unidadCurriculares);
     }
 }

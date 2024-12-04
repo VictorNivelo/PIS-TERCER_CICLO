@@ -10,7 +10,6 @@ import Modelo.Carrera;
  * @author Victor
  */
 public class carreraDao extends DaoImplement<Carrera> {
-
     private ListaDinamica<Carrera> ListaCarreras = new ListaDinamica<>();
     private Carrera carreras;
 
@@ -28,7 +27,7 @@ public class carreraDao extends DaoImplement<Carrera> {
     }
 
     public Carrera getCarreras() {
-        if(carreras == null){
+        if (carreras == null) {
             carreras = new Carrera();
         }
         return carreras;
@@ -37,10 +36,10 @@ public class carreraDao extends DaoImplement<Carrera> {
     public void setCarreras(Carrera carreras) {
         this.carreras = carreras;
     }
-    
+
     public Boolean Persist() {
         carreras.setIdCarrera(all().getLongitud() + 1);
         return Persist(carreras);
     }
-    
+
 }

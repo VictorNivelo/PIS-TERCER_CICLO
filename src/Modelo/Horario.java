@@ -1,7 +1,6 @@
 
 package Modelo;
 
-
 /**
  *
  * @author Victor
@@ -12,12 +11,12 @@ public class Horario {
     private String DiaSemana;
     private String HoraIncio;
     private String HoraFin;
-    
+
     private Materia materiaHorario;
     private Integer idMateria;
 
     public Horario() {
-        
+
     }
 
     public Integer getIdHorario() {
@@ -75,10 +74,10 @@ public class Horario {
     public void setMateriaID(Integer MateriaID) {
         this.idMateria = MateriaID;
     }
-    
+
     @Override
     public String toString() {
-        return DiaSemana + "  "+ HoraIncio + " - " + HoraFin + "\n";
+        return DiaSemana + "  " + HoraIncio + " - " + HoraFin + "\n";
     }
-    
+
 }

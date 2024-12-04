@@ -11,7 +11,6 @@ import java.io.IOException;
  * @author Victor
  */
 public class rolDaoBD extends AdaptadorDaoBD<Rol> {
-
     private ListaDinamica<Rol> ListaAsistencias;
     private Rol asistencias = new Rol();
     private Integer Indice = -1;
@@ -56,7 +55,7 @@ public class rolDaoBD extends AdaptadorDaoBD<Rol> {
         try {
             modificar(this.asistencias);
             return true;
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
             return false;

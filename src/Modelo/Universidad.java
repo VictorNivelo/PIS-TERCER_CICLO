@@ -14,8 +14,8 @@ public class Universidad {
     private String FechaFundacion;
 
     public Universidad() {
-        
-    } 
+
+    }
 
     public Integer getIdU() {
         return IdUniversidad;
@@ -69,5 +69,5 @@ public class Universidad {
     public String toString() {
         return NombreUniversidad + "\n";
     }
-        
+
 }

@@ -14,9 +14,9 @@ public class Asistencia {
     private Horario horarioAsistencia;
     private Alumno alumnoAsistencia;
     private Tematica TematicaAsistencia;
-    
+
     public Asistencia() {
-        
+
     }
 
     public String getFechaAsistencia() {
@@ -74,10 +74,10 @@ public class Asistencia {
     public void setIdAsistencia(Integer IdAsistencia) {
         this.IdAsistencia = IdAsistencia;
     }
-    
+
     @Override
     public String toString() {
-        return "Estado: "+EstadoAsistencia+"Observacion:" + Observacion + "\n";
+        return "Estado: " + EstadoAsistencia + "Observacion:" + Observacion + "\n";
     }
-                
+
 }

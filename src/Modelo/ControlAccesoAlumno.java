@@ -8,7 +8,7 @@ package Modelo;
 public class ControlAccesoAlumno {
     private static Alumno alumnoLogeado;
     private static String nombreAlumnoLogeado;
-    
+
     public static void setNombreAlumnoLogeado(String nombre) {
         nombreAlumnoLogeado = nombre;
     }
@@ -28,7 +28,7 @@ public class ControlAccesoAlumno {
     public static Integer getIdAlumnoLogeado() {
         if (alumnoLogeado != null) {
             return alumnoLogeado.getIdAlumno();
-        } 
+        }
         else {
             return null;
         }

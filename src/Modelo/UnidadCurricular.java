@@ -10,10 +10,9 @@ public class UnidadCurricular {
     private String CodigoUnidadCurricular;
     private String NombreUnidadCurricular;
     private String DescripcionUnidadCurricular;
-    
+
     private MallaC mallaCurricularUnidadCurricular;
     private Integer MallaCurricularID;
-    
 
     public Integer getIdUnidadCurricular() {
         return IdUnidadCurricular;
@@ -65,7 +64,7 @@ public class UnidadCurricular {
 
     @Override
     public String toString() {
-        return CodigoUnidadCurricular + " " +NombreUnidadCurricular + "\n";
+        return CodigoUnidadCurricular + " " + NombreUnidadCurricular + "\n";
     }
-    
+
 }

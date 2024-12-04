@@ -12,13 +12,13 @@ import Modelo.PeriodoAcademico;
 public class periodoAcademicoDao extends DaoImplement<PeriodoAcademico> {
     private ListaDinamica<PeriodoAcademico> ListaPeriodos;
     private PeriodoAcademico periodo;
-    
-    public periodoAcademicoDao(){
+
+    public periodoAcademicoDao() {
         super(PeriodoAcademico.class);
     }
 
     public ListaDinamica<PeriodoAcademico> getListaPeriodos() {
-        ListaPeriodos  = all();
+        ListaPeriodos = all();
         return ListaPeriodos;
     }
 
@@ -37,10 +37,9 @@ public class periodoAcademicoDao extends DaoImplement<PeriodoAcademico> {
         this.periodo = periodo;
     }
 
-    
-    public Boolean persist(){
+    public Boolean persist() {
         periodo.setIdPeriodoAcademino(all().getLongitud() + 1);
         return Persist(periodo);
     }
-    
+
 }

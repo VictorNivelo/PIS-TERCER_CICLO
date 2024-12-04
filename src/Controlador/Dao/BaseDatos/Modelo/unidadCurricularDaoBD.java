@@ -11,7 +11,6 @@ import java.io.IOException;
  * @author Victor
  */
 public class unidadCurricularDaoBD extends AdaptadorDaoBD<UnidadCurricular> {
-
     private ListaDinamica<UnidadCurricular> ListaAsistencias;
     private UnidadCurricular asistencias = new UnidadCurricular();
     private Integer Indice = -1;
@@ -56,7 +55,7 @@ public class unidadCurricularDaoBD extends AdaptadorDaoBD<UnidadCurricular> {
         try {
             modificar(this.asistencias);
             return true;
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
             return false;

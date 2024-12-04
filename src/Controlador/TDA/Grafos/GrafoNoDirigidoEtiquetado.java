@@ -8,8 +8,8 @@ import Controlador.TDA.Grafos.Excepcion.VerticeException;
  * @author Victor
  * @param <E>
  */
-public class GrafoNoDirigidoEtiquetado<E> extends GradoDirigidoEtiquetado<E>{
-    
+public class GrafoNoDirigidoEtiquetado<E> extends GradoDirigidoEtiquetado<E> {
+
     @SuppressWarnings("rawtypes")
     public GrafoNoDirigidoEtiquetado(Integer numVer, Class clazz) {
         super(numVer, clazz);
@@ -22,10 +22,10 @@ public class GrafoNoDirigidoEtiquetado<E> extends GradoDirigidoEtiquetado<E>{
                 getListaAdyacencia()[v1].Agregar(new Adyacencia(v2, peso));
                 getListaAdyacencia()[v2].Agregar(new Adyacencia(v1, peso));
             }
-        } 
+        }
         else {
             throw new VerticeException();
         }
     }
-    
+
 }

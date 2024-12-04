@@ -2,8 +2,6 @@
 package Vista;
 
 import Controlador.TDA.ListaDinamica.Excepcion.ListaVacia;
-import Controlador.TDA.ListaDinamica.ListaDinamica;
-import Modelo.Horario;
 import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
@@ -43,7 +41,8 @@ public class VistaCalendarioAlumno extends JFrame {
             cal.set(Calendar.DAY_OF_MONTH, 1);
 
             while (cal.get(Calendar.YEAR) == AnioActual && cal.get(Calendar.MONTH) == mes) {
-                String nombreDiaActual = cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.forLanguageTag("es-ES"));
+                String nombreDiaActual = cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG,
+                        Locale.forLanguageTag("es-ES"));
 
                 if (nombreDiaActual.equalsIgnoreCase(nombreDia)) {
                     String fecha = Formato.format(cal.getTime());
@@ -58,18 +57,15 @@ public class VistaCalendarioAlumno extends JFrame {
         ActualizarCalendario();
     }
 
-
-
-
-
-//    public void AgregarEvento(String fecha, String descripcion) {
-//
-//        ArrayList<String> recordatorios = MapaRecordatorios.getOrDefault(fecha, new ArrayList<>());
-//        recordatorios.add(descripcion);
-//        MapaRecordatorios.put(fecha, recordatorios);
-//
-//        ActualizarCalendario();
-//    }
+    // public void AgregarEvento(String fecha, String descripcion) {
+    //
+    // ArrayList<String> recordatorios = MapaRecordatorios.getOrDefault(fecha, new
+    // ArrayList<>());
+    // recordatorios.add(descripcion);
+    // MapaRecordatorios.put(fecha, recordatorios);
+    //
+    // ActualizarCalendario();
+    // }
 
     @SuppressWarnings("unused")
     private void imprimirFechaActual(String fecha) {
@@ -81,11 +77,11 @@ public class VistaCalendarioAlumno extends JFrame {
         AnioActual = nuevoAnio;
     }
 
-//    private void imprimirFechaActual() {
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
-//        String fechaActual = sdf.format(new Date());
-//        System.out.println("Fecha actual: " + fechaActual);
-//    }
+    // private void imprimirFechaActual() {
+    // SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+    // String fechaActual = sdf.format(new Date());
+    // System.out.println("Fecha actual: " + fechaActual);
+    // }
     private void createGUI() {
         Container Contenedor = getContentPane();
         Contenedor.setLayout(new BorderLayout());
@@ -94,12 +90,14 @@ public class VistaCalendarioAlumno extends JFrame {
         PanelPrincipal.setBackground(new Color(61, 90, 134));
 
         JButton BotonAnterior = new JButton("ANTERIOR");
-        BotonAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Anterior.png")));
-        
+        BotonAnterior.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Anterior.png")));
+
         JButton BotonSiguiente = new JButton("SIGUIENTE");
-        BotonSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Siguiente.png")));
+        BotonSiguiente.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Siguiente.png")));
         BotonSiguiente.setHorizontalTextPosition(SwingConstants.LEFT);
-    
+
         BotonAnterior.setBackground(new Color(83, 109, 136));
         BotonAnterior.setFont(new Font("SansSerif", Font.PLAIN, 16));
         BotonAnterior.setForeground(Color.WHITE);
@@ -116,7 +114,8 @@ public class VistaCalendarioAlumno extends JFrame {
         PanelPrincipal.setBackground(new Color(61, 90, 134));
 
         JButton botonRegresar = new JButton("REGRESAR");
-        botonRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Regresar.png")));
+        botonRegresar.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Regresar.png")));
         botonRegresar.addActionListener(e -> {
             try {
                 VistaAlumnoPrincipal otraInterfaz = new VistaAlumnoPrincipal();
@@ -124,22 +123,22 @@ public class VistaCalendarioAlumno extends JFrame {
                 otraInterfaz.setVisible(true);
             }
             catch (ListaVacia ex) {
-                
+
             }
             dispose();
         });
         PanelPrincipal.add(botonRegresar, BorderLayout.WEST);
-//BotonImprimir fecha
-//        JButton botonImprimirFecha = new JButton("Imprimir Fecha");
-//        botonImprimirFecha.addActionListener(e -> imprimirFechaActual());
-//        PanelPrincipal.add(botonImprimirFecha, BorderLayout.EAST);
+        // BotonImprimir fecha
+        // JButton botonImprimirFecha = new JButton("Imprimir Fecha");
+        // botonImprimirFecha.addActionListener(e -> imprimirFechaActual());
+        // PanelPrincipal.add(botonImprimirFecha, BorderLayout.EAST);
 
         BotonAnterior.addActionListener(e -> {
             if (MesActual == 0) {
                 MesActual = 11;
-//                AnioActual--;
+                // AnioActual--;
                 actualizarAnioComboBox(AnioActual - 1);
-            } 
+            }
             else {
                 MesActual--;
             }
@@ -149,9 +148,9 @@ public class VistaCalendarioAlumno extends JFrame {
         BotonSiguiente.addActionListener(e -> {
             if (MesActual == 11) {
                 MesActual = 0;
-//                AnioActual++;
+                // AnioActual++;
                 actualizarAnioComboBox(AnioActual + 1);
-            } 
+            }
             else {
                 MesActual++;
             }
@@ -190,9 +189,10 @@ public class VistaCalendarioAlumno extends JFrame {
 
     @SuppressWarnings("unused")
     private void ActualizarCalendario() {
-        EtiquetaMes.setText(new SimpleDateFormat("          MMMM          ").format(new GregorianCalendar(AnioActual, MesActual, 1).getTime()));
+        EtiquetaMes.setText(new SimpleDateFormat("          MMMM          ")
+                .format(new GregorianCalendar(AnioActual, MesActual, 1).getTime()));
         PanelCalendario.removeAll();
-        String[] DiaMes = {"Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"};
+        String[] DiaMes = { "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
 
         for (String Dia : DiaMes) {
             JLabel EtiquetaDias = new JLabel(Dia, JLabel.CENTER);
@@ -222,9 +222,11 @@ public class VistaCalendarioAlumno extends JFrame {
             BotonDias.setBackground(new Color(200, 200, 200));
             BotonDias.setForeground(Color.BLACK);
 
-//            String FechaAux = String.format("%02d/%02d/%d", i, MesActual + 1, AnioActual);
-//                    AnioActual + "-" + MesActual + "-" + i;
-//ArrayList<String> Recordatorios = MapaRecordatorios.getOrDefault(FechaAux, new ArrayList<>());
+            // String FechaAux = String.format("%02d/%02d/%d", i, MesActual + 1,
+            // AnioActual);
+            // AnioActual + "-" + MesActual + "-" + i;
+            // ArrayList<String> Recordatorios = MapaRecordatorios.getOrDefault(FechaAux,
+            // new ArrayList<>());
             String FechaAux = Formato.format(new GregorianCalendar(AnioActual, MesActual, i).getTime());
             ArrayList<String> Recordatorios = MapaRecordatorios.getOrDefault(FechaAux, new ArrayList<>());
 
@@ -240,21 +242,24 @@ public class VistaCalendarioAlumno extends JFrame {
                 BotonDias.setText(TextoAgregado.toString());
             }
 
-//            BotonDias.addActionListener(e -> {
-//                imprimirFechaActual(FechaAux);
-////                System.out.println("Fecha: " + FechaAux);
-//                String Evento = JOptionPane.showInputDialog(null, "Agregar horario en " + finalI + " de " + new SimpleDateFormat("MMMM yyyy").format(new GregorianCalendar(AnioActual, MesActual, finalI).getTime()), "INGRESAR EVENTO", JOptionPane.PLAIN_MESSAGE);
-//
-//                if (Evento != null && !Evento.isEmpty()) {
-//                    BotonDias.setForeground(Color.RED);
-//                    Recordatorios.add(Evento);
-//                    MapaRecordatorios.put(FechaAux, Recordatorios);
-//                    ActualizarCalendario();
-//                }
-//            });
+            // BotonDias.addActionListener(e -> {
+            // imprimirFechaActual(FechaAux);
+            //// System.out.println("Fecha: " + FechaAux);
+            // String Evento = JOptionPane.showInputDialog(null, "Agregar horario en " +
+            // finalI + " de " + new SimpleDateFormat("MMMM yyyy").format(new
+            // GregorianCalendar(AnioActual, MesActual, finalI).getTime()), "INGRESAR
+            // EVENTO", JOptionPane.PLAIN_MESSAGE);
+            //
+            // if (Evento != null && !Evento.isEmpty()) {
+            // BotonDias.setForeground(Color.RED);
+            // Recordatorios.add(Evento);
+            // MapaRecordatorios.put(FechaAux, Recordatorios);
+            // ActualizarCalendario();
+            // }
+            // });
             PanelCalendario.add(BotonDias);
-            //172, 174, 185
-            //225, 233, 225
+            // 172, 174, 185
+            // 225, 233, 225
             PanelCalendario.setBackground(new Color(172, 174, 185));
         }
 
@@ -282,18 +287,22 @@ public class VistaCalendarioAlumno extends JFrame {
                     break;
                 }
             }
-        } 
+        }
         catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaDocenteCalendario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
+            java.util.logging.Logger.getLogger(VistaDocenteCalendario.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        }
         catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaDocenteCalendario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
+            java.util.logging.Logger.getLogger(VistaDocenteCalendario.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        }
         catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaDocenteCalendario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } 
+            java.util.logging.Logger.getLogger(VistaDocenteCalendario.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        }
         catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaDocenteCalendario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaDocenteCalendario.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         SwingUtilities.invokeLater(() -> new VistaCalendarioAlumno());

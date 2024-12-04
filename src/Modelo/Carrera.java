@@ -10,12 +10,12 @@ public class Carrera {
     private String NombreCarrera;
     private Integer Duracion;
     private Integer NumeroCiclos;
-    
+
     private Facultad facutadCarrera;
     private Integer FacultadID;
-    
+
     public Carrera() {
-        
+
     }
 
     public Integer getIdCarrera() {
@@ -70,5 +70,5 @@ public class Carrera {
     public String toString() {
         return NombreCarrera + "\n";
     }
-    
+
 }

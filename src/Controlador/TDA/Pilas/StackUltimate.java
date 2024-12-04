@@ -15,27 +15,27 @@ public class StackUltimate<E> {
     public StackUltimate(Integer legngt) {
         this.stack = new Stack<>(legngt);
     }
-    
-    public void push(E info) throws ListaVacia, FullStackException{
+
+    public void push(E info) throws ListaVacia, FullStackException {
         stack.push(info);
     }
-    
-    public E pop() throws ListaVacia{
+
+    public E pop() throws ListaVacia {
         return stack.pop();
     }
-    
-    public Integer length(){
+
+    public Integer length() {
         return stack.getLongitud();
     }
-    
-    public Boolean isfull(){
+
+    public Boolean isfull() {
         return stack.isFull();
     }
-    
-    public void print(){
+
+    public void print() {
         System.out.println("Stack");
         System.out.println(stack.toString());
         System.out.println("");
     }
-    
+
 }

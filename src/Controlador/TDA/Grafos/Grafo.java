@@ -10,12 +10,17 @@ import Controlador.TDA.ListaDinamica.ListaDinamica;
 public abstract class Grafo {
 
     public abstract Integer num_vertice();
+
     public abstract Integer num_aristas();
-    
+
     public abstract Boolean existe_arista(Integer v1, Integer v2) throws Exception;
+
     public abstract Double peso_arista(Integer v1, Integer v2) throws Exception;
+
     public abstract void insertar_arista(Integer v1, Integer v2, Double peso) throws Exception;
+
     public abstract void insertar_arista(Integer v1, Integer v2) throws Exception;
+
     public abstract ListaDinamica<Adyacencia> adycentes(Integer v1) throws Exception;
 
     @Override
@@ -30,12 +35,13 @@ public abstract class Grafo {
                     grafo.append("ady ").append(a.getDestino()).append(" peso ").append(a.getPeso()).append("\n");
                 }
             }
-        } 
-        catch (Exception e) {
-            
         }
-        return grafo.toString(); 
-        // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return grafo.toString();
+        // Generated from
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
-    
+
 }

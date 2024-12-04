@@ -44,18 +44,16 @@ public class AdaptadorDaoBD<T> implements InterfazDaoBD<T> {
      * Metodo que permite guardar
      *
      * @param obj El objeto del modelo lleno
-     * @return La llave primaria generada por el motor de base de datos (se
-     * sugiere construir la tabla de base de datos con la generacion de id auto
-     * incementable)
+     * @return La llave primaria generada por el motor de base de datos (se sugiere
+     *         construir la tabla de base de datos con la generacion de id auto
+     *         incementable)
      * @throws Exception Cuando no se puede guardar en la base de datos
      */
     public Integer guardar(T obj, String sequenceName) throws Exception {
         String query = queryInsert(obj);
         Integer idGenerado = -1;
-
         try (PreparedStatement statement = conexion.getConnection().prepareStatement(query)) {
             statement.executeUpdate();
-
             // Recupera el valor de la secuencia después de la inserción
             try (Statement seqStatement = conexion.getConnection().createStatement()) {
                 ResultSet resultSet = seqStatement.executeQuery("SELECT " + sequenceName + ".CURRVAL FROM dual");
@@ -63,32 +61,31 @@ public class AdaptadorDaoBD<T> implements InterfazDaoBD<T> {
                     idGenerado = resultSet.getInt(1);
                 }
             }
-        } finally {
+        }
+        finally {
             conexion.getConnection().close();
             conexion.setConnection(null);
         }
         return idGenerado;
     }
-    
+
     public Boolean guardarb(T obj) throws Exception {
         String query = queryInsert(obj);
         Boolean band = false;
-
         try (PreparedStatement statement = conexion.getConnection().prepareStatement(query)) {
             int affectedRows = statement.executeUpdate();
             band = affectedRows > 0;
-        } finally {
+        }
+        finally {
             conexion.getConnection().close();
             conexion.setConnection(null);
         }
         return band;
     }
 
-
     /**
-     * Metodo que permite modificar un registro en la base de datos, para
-     * modificar se debe primero consultar el Objeto haciendo uso del metodo
-     * Obtener
+     * Metodo que permite modificar un registro en la base de datos, para modificar
+     * se debe primero consultar el Objeto haciendo uso del metodo Obtener
      *
      * @param obj El objeto del modelo a modificar
      * @throws Exception Alguna Excepcion si no modifica
@@ -109,7 +106,6 @@ public class AdaptadorDaoBD<T> implements InterfazDaoBD<T> {
      */
     @Override
     public ListaDinamica<T> listar() {
-
         ListaDinamica<T> lista = new ListaDinamica<>();
         try {
             Statement stmt = conexion.getConnection().createStatement();
@@ -118,7 +114,8 @@ public class AdaptadorDaoBD<T> implements InterfazDaoBD<T> {
             while (rs.next()) {
                 lista.Agregar(llenarObjeto(rs));
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println(e);
         }
         return lista;
@@ -140,11 +137,12 @@ public class AdaptadorDaoBD<T> implements InterfazDaoBD<T> {
             while (rs.next()) {
                 data = llenarObjeto(rs);
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
         }
         return data;
     }
-    
+
     @Override
     public Boolean eliminar(Integer id) {
         try {
@@ -152,12 +150,13 @@ public class AdaptadorDaoBD<T> implements InterfazDaoBD<T> {
             String query = "DELETE FROM " + clazz.getSimpleName().toLowerCase() + " WHERE id = " + id;
             stmt.executeUpdate(query);
             return true;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             return false;
         }
     }
 
-    //--------------ESTO ES DEL CRUD NO MODIFICAR AL MENOS QUE LO AMERITE------
+    // --------------ESTO ES DEL CRUD NO MODIFICAR AL MENOS QUE LO AMERITE------
     @SuppressWarnings("unchecked")
     private T llenarObjeto(ResultSet rs) {
         T data = null;
@@ -171,8 +170,7 @@ public class AdaptadorDaoBD<T> implements InterfazDaoBD<T> {
                 String atributo = f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1);
                 fijarDatos(f, rs, data, atributo);
             }
-
-        } 
+        }
         catch (Exception e) {
             System.out.println("error " + e);
         }
@@ -183,38 +181,31 @@ public class AdaptadorDaoBD<T> implements InterfazDaoBD<T> {
     private void fijarDatos(Field f, ResultSet rs, T data, String atributo) {
         try {
             Method m = null;
-
             if (f.getType().getSimpleName().equalsIgnoreCase("String")) {
                 m = clazz.getMethod("set" + atributo, String.class);
                 m.invoke(data, rs.getString(atributo));
             }
-
             if (f.getType().getSimpleName().equalsIgnoreCase("Integer")) {
                 m = clazz.getMethod("set" + atributo, Integer.class);
                 m.invoke(data, rs.getInt(atributo));
             }
-
             if (f.getType().getSimpleName().equalsIgnoreCase("Double")) {
                 m = clazz.getMethod("set" + atributo, Double.class);
                 m.invoke(data, rs.getDouble(atributo));
             }
-
             if (f.getType().getSimpleName().equalsIgnoreCase("Boolean")) {
                 m = clazz.getMethod("set" + atributo, Boolean.class);
                 m.invoke(data, rs.getBoolean(atributo));
             }
-
             if (f.getType().getSimpleName().equalsIgnoreCase("Date")) {
                 m = clazz.getMethod("set" + atributo, Date.class);
                 m.invoke(data, rs.getDate(atributo));
             }
-
             if (f.getType().isEnum()) {
-
                 m = clazz.getMethod("set" + atributo, (Class<Enum>) f.getType());
                 m.invoke(data, Enum.valueOf((Class<Enum>) f.getType(), rs.getString(atributo)));
             }
-        } 
+        }
         catch (Exception e) {
             System.out.println("Error al fijar datos " + e);
         }
@@ -233,7 +224,6 @@ public class AdaptadorDaoBD<T> implements InterfazDaoBD<T> {
                     mapa.put(atributo.toLowerCase(), aux);
                 }
             }
-
             for (Field f : clazz.getSuperclass().getDeclaredFields()) {
                 Method m = null;
                 String atributo = f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1);
@@ -242,9 +232,8 @@ public class AdaptadorDaoBD<T> implements InterfazDaoBD<T> {
                 if (aux != null) {
                     mapa.put(atributo.toLowerCase(), aux);
                 }
-
             }
-        } 
+        }
         catch (Exception e) {
             System.out.println("No se pudo tener dato");
         }
@@ -256,21 +245,21 @@ public class AdaptadorDaoBD<T> implements InterfazDaoBD<T> {
         String query = "INSERT INTO " + clazz.getSimpleName().toLowerCase() + " (";
         for (Map.Entry<String, Object> entry : mapa.entrySet()) {
             query += entry.getKey() + ",";
-
         }
         query = query.substring(0, query.length() - 1);
         query += ") VALUES (";
         for (Map.Entry<String, Object> entry : mapa.entrySet()) {
-
-            if (entry.getValue().getClass().getSuperclass().getSimpleName().equalsIgnoreCase("Number") || entry.getValue().getClass().getSimpleName().equalsIgnoreCase("Boolean")) {
+            if (entry.getValue().getClass().getSuperclass().getSimpleName().equalsIgnoreCase("Number")
+                    || entry.getValue().getClass().getSimpleName().equalsIgnoreCase("Boolean")) {
                 query += entry.getValue() + ", ";
             }
             if (entry.getValue().getClass().getSimpleName().equalsIgnoreCase("Date")) {
-//                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                // SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 query += '"' + formato.format(entry.getValue()) + '"' + ", ";
             }
-            if (entry.getValue().getClass().isEnum() || entry.getValue().getClass().getSimpleName().equalsIgnoreCase("String")) {
+            if (entry.getValue().getClass().isEnum()
+                    || entry.getValue().getClass().getSimpleName().equalsIgnoreCase("String")) {
                 query += '"' + entry.getValue().toString() + '"' + ", ";
             }
         }
@@ -286,29 +275,27 @@ public class AdaptadorDaoBD<T> implements InterfazDaoBD<T> {
         for (Map.Entry<String, Object> entry : mapa.entrySet()) {
             if (entry.getKey().toString().equalsIgnoreCase("id")) {
                 id = (Integer) entry.getValue();
-            } 
+            }
             else {
                 query += entry.getKey() + " = ";
-                if (entry.getValue().getClass().getSuperclass().getSimpleName().equalsIgnoreCase("Number") || entry.getValue().getClass().getSimpleName().equalsIgnoreCase("Boolean")) {
+                if (entry.getValue().getClass().getSuperclass().getSimpleName().equalsIgnoreCase("Number")
+                        || entry.getValue().getClass().getSimpleName().equalsIgnoreCase("Boolean")) {
                     query += entry.getValue() + ", ";
                 }
                 if (entry.getValue().getClass().getSimpleName().equalsIgnoreCase("Date")) {
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                     query += '"' + formato.format(entry.getValue()) + '"' + ", ";
                 }
-                if (entry.getValue().getClass().isEnum() || entry.getValue().getClass().getSimpleName().equalsIgnoreCase("String")) {
+                if (entry.getValue().getClass().isEnum()
+                        || entry.getValue().getClass().getSimpleName().equalsIgnoreCase("String")) {
                     query += '"' + entry.getValue().toString() + '"' + ", ";
                 }
             }
         }
-
         query += "";
-
         query = query.substring(0, query.length() - 2);
         query += " WHERE id = " + id;
         return query;
     }
 
-    
 }
-

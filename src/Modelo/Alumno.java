@@ -8,12 +8,12 @@ package Modelo;
 public class Alumno {
     private Integer IdAlumno;
     private String EstadoAlumno;
-    
+
     private Persona DatosAlumno;
     private Integer PersonaAlumnoID;
-    
+
     public Alumno() {
-        
+
     }
 
     public Integer getIdAlumno() {
@@ -47,10 +47,10 @@ public class Alumno {
     public void setPersonaAlumnoID(Integer PersonaAlumnoID) {
         this.PersonaAlumnoID = PersonaAlumnoID;
     }
-    
+
     @Override
     public String toString() {
-        return DatosAlumno.getNumeroCedula() + " " + DatosAlumno.getNombre() +" " +DatosAlumno.getApellido()+ "\n";
+        return DatosAlumno.getNumeroCedula() + " " + DatosAlumno.getNombre() + " " + DatosAlumno.getApellido() + "\n";
     }
-    
+
 }

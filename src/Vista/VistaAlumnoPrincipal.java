@@ -34,12 +34,13 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
     presentacionDao presentacionControlDao = new presentacionDao();
     private ListaDinamica<Presentacion> listaPresentacion = presentacionControlDao.all();
     private ListaDinamica<String> imagenes = new ListaDinamica<>();
-    
+
     private int indiceImagenActual = -1;
-    private Timer timer;    
+    private Timer timer;
 
     /**
      * Creates new form VistaAlumnoPrincipal
+     * 
      * @throws Controlador.TDA.ListaDinamica.Excepcion.ListaVacia
      */
     public VistaAlumnoPrincipal() throws ListaVacia {
@@ -54,20 +55,20 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
                 String imagen = listaPresentacion.getInfo(i).getImagen();
                 imagenes.Agregar(imagen);
                 System.out.println(i);
-            } 
+            }
             catch (ListaVacia ex) {
-                
+
             }
         }
 
         cambiarImagen();
-  
+
         timer = new Timer(2500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     cambiarImagen();
-                } 
+                }
                 catch (ListaVacia ex) {
 
                 }
@@ -75,7 +76,7 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
         });
         timer.start();
     }
-    
+
     private String CargarImagen() throws ListaVacia {
         try {
             String rutaImagen = imagenes.getInfo(indiceImagenActual);
@@ -95,16 +96,17 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
         do {
             indiceImagenActual = (indiceImagenActual + 1) % imagenes.getLongitud();
             intentos++;
-        } 
-        while (!"Activa".equalsIgnoreCase(listaPresentacion.getInfo(indiceImagenActual).getEstadoPresentacion()) && intentos < imagenes.getLongitud());
+        }
+        while (!"Activa".equalsIgnoreCase(listaPresentacion.getInfo(indiceImagenActual).getEstadoPresentacion())
+                && intentos < imagenes.getLongitud());
 
-        panelPrincipal.repaint(); 
+        panelPrincipal.repaint();
     }
-    
-//    private void cambiarImagen() {
-//        indiceImagenActual = (indiceImagenActual + 1) % imagenes.length;
-//        panelPrincipal.repaint();
-//    }
+
+    // private void cambiarImagen() {
+    // indiceImagenActual = (indiceImagenActual + 1) % imagenes.length;
+    // panelPrincipal.repaint();
+    // }
 
     private void cargarMateriasAlumno() {
         int idAlumnoLogeado = ControlAccesoAlumno.getIdAlumnoLogeado();
@@ -119,7 +121,7 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
                     cbxMateriaAlumno.addItem(materia.getNombreMateria());
                 }
             }
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
         }
@@ -136,17 +138,17 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
         }
         return cursasPorAlumno;
     }
-    
+
     private void mostrarNombreAlumno() {
         String nombreAlumno = ControlAccesoAlumno.getNombreAlumnoLogeado();
         lblNombreAlumnoIngresado.setText(nombreAlumno);
     }
-    
+
     @SuppressWarnings("unused")
     private boolean esDiaLaborable(String diaSemana, Date fechaInicioPeriodo, Date fechaFinPeriodo) {
         Date fechaActual = new Date();
         if (fechaActual.compareTo(fechaInicioPeriodo) >= 0 && fechaActual.compareTo(fechaFinPeriodo) <= 0) {
-            String[] diasLaborables = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes"};
+            String[] diasLaborables = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes" };
 
             for (String dia : diasLaborables) {
                 if (dia.equalsIgnoreCase(diaSemana)) {
@@ -162,13 +164,13 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             return sdf.parse(fechaString);
-        } 
+        }
         catch (ParseException ex) {
             ex.printStackTrace();
             return null;
         }
     }
-    
+
     @SuppressWarnings("unused")
     public static PeriodoAcademico obtenerPeriodoAcademicoActivo(ListaDinamica<PeriodoAcademico> periodos) {
         Date fechaActual = new Date();
@@ -184,7 +186,7 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
                 if (fechaActual.after(fechaInicio) && fechaActual.before(fechaFin)) {
                     return periodo;
                 }
-            } 
+            }
             catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -201,7 +203,7 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
             Date fechaFin = sdf.parse(periodo.getFechaFin());
 
             return fecha.after(fechaInicio) && fecha.before(fechaFin);
-        } 
+        }
         catch (ParseException e) {
             e.printStackTrace();
             return false;
@@ -214,7 +216,8 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
      * regenerated by the Form Editor.
      */
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         panelPrincipal = new javax.swing.JPanel() {
@@ -224,13 +227,13 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
                 try {
                     ImageIcon icon = new ImageIcon(getClass().getResource(CargarImagen()));
                     g.drawImage(icon.getImage(), 0, 0, getWidth(), getHeight(), this);
-                } 
+                }
                 catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         };
-        
+
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -263,35 +266,25 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jLabel3)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(338, 338, 338)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addComponent(lblNombreAlumnoIngresado, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(318, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNombreAlumnoIngresado)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel3Layout.setHorizontalGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup().addGap(75, 75, 75).addComponent(jLabel3)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createSequentialGroup().addGap(338, 338, 338)
+                                        .addComponent(jLabel1))
+                                .addGroup(jPanel3Layout.createSequentialGroup().addGap(175, 175, 175).addComponent(
+                                        lblNombreAlumnoIngresado, javax.swing.GroupLayout.PREFERRED_SIZE, 494,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(318, Short.MAX_VALUE)));
+        jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup().addComponent(jLabel3).addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createSequentialGroup().addGap(17, 17, 17).addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNombreAlumnoIngresado)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         btnRegresar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/CerraSesion.png"))); // NOI18N
+        btnRegresar.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/CerraSesion.png"))); // NOI18N
         btnRegresar.setText("CERRAR SESION");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -300,7 +293,8 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
         });
 
         btnMostrarCalendario.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnMostrarCalendario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Calendario.png"))); // NOI18N
+        btnMostrarCalendario.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Calendario.png"))); // NOI18N
         btnMostrarCalendario.setText("CALENDARIO");
         btnMostrarCalendario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,7 +308,8 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
         jLabel2.setText("MATERIA");
 
         btnVerMateria.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnVerMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/PorcentajeAsistencia.png"))); // NOI18N
+        btnVerMateria.setIcon(new javax.swing.ImageIcon(
+                getClass().getResource("/Vista/RecursosGraficos/Botones/PorcentajeAsistencia.png"))); // NOI18N
         btnVerMateria.setText("VER MATERIA");
         btnVerMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -324,63 +319,62 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
-        panelPrincipalLayout.setHorizontalGroup(
-            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
-            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addComponent(btnRegresar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnMostrarCalendario))
-                            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbxMateriaAlumno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnVerMateria, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        panelPrincipalLayout.setVerticalGroup(
-            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbxMateriaAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnVerMateria)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 411, Short.MAX_VALUE)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegresar)
-                    .addComponent(btnMostrarCalendario))
-                .addContainerGap())
-        );
+        panelPrincipalLayout.setHorizontalGroup(panelPrincipalLayout
+                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+                .addGroup(panelPrincipalLayout.createSequentialGroup().addContainerGap().addGroup(panelPrincipalLayout
+                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelPrincipalLayout.createSequentialGroup().addGroup(panelPrincipalLayout
+                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(panelPrincipalLayout.createSequentialGroup().addComponent(btnRegresar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnMostrarCalendario))
+                                .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 258,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())
+                        .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGroup(panelPrincipalLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(cbxMateriaAlumno, 0, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                Short.MAX_VALUE)
+                                        .addComponent(btnVerMateria, javax.swing.GroupLayout.DEFAULT_SIZE, 258,
+                                                Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE)))));
+        panelPrincipalLayout.setVerticalGroup(panelPrincipalLayout
+                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbxMateriaAlumno, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(btnVerMateria)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 411, Short.MAX_VALUE)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnRegresar).addComponent(btnMostrarCalendario))
+                        .addContainerGap()));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(panelPrincipal,
+                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(panelPrincipal,
+                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegresarActionPerformed
 
         try {
-            int result = JOptionPane.showConfirmDialog(null, "Estas seguro que quieres cerrar sesion?", "CONFIRMAR CIERRE DE SESION", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            int result = JOptionPane.showConfirmDialog(null, "Estas seguro que quieres cerrar sesion?",
+                    "CONFIRMAR CIERRE DE SESION", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
             if (result == JOptionPane.YES_OPTION) {
                 VistaPrincipalSistema abrirLogin = new VistaPrincipalSistema();
@@ -392,10 +386,10 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
 
         }
 
-    }//GEN-LAST:event_btnRegresarActionPerformed
+    }// GEN-LAST:event_btnRegresarActionPerformed
 
-    private void btnMostrarCalendarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarCalendarioActionPerformed
-        
+    private void btnMostrarCalendarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMostrarCalendarioActionPerformed
+
         try {
             VistaCalendarioAlumno vistaCalendarioAlumno = new VistaCalendarioAlumno();
 
@@ -412,7 +406,8 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
                         Cursa cursa = listaCursas.getInfo(j);
                         int idAlumnoCursa = cursa.getMatriculaCursa().getAlumnoMatricula().getIdAlumno();
 
-                        if (idAlumnoCursa == idAlumnoLogeado && idMateriaHorario == cursa.getMateriaCursa().getIdMateria()) {
+                        if (idAlumnoCursa == idAlumnoLogeado
+                                && idMateriaHorario == cursa.getMateriaCursa().getIdMateria()) {
                             String diaSemana = horario.getDiaSemana();
                             String nombreMateria = cursa.getMateriaCursa().getNombreMateria();
                             String horaInicio = horario.getHoraIncio();
@@ -426,72 +421,76 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
 
                 vistaCalendarioAlumno.setVisible(true);
                 this.setVisible(false);
-            } 
+            }
             else {
                 System.out.println("No hay alumno logeado en este momento.");
             }
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
         }
 
-        
-//        try {
-//            VistaCalendarioAlumno vistaCalendarioAlumno = new VistaCalendarioAlumno();
-//
-//            Integer idAlumnoLogeado = ControlAccesoAlumno.getIdAlumnoLogeado();
-//            if (idAlumnoLogeado != null) {
-//                ListaDinamica<Horario> listaHorarios = horarioControlDao.all();
-//                ListaDinamica<Cursa> listaCursas = cursaControlDao.all();
-//
-//                for (int i = 0; i < listaHorarios.getLongitud(); i++) {
-//                    Horario horario = listaHorarios.getInfo(i);
-//                    int idMateriaHorario = horario.getMateriaHorario().getIdMateria();
-//
-//                    for (int j = 0; j < listaCursas.getLongitud(); j++) {
-//                        Cursa cursa = listaCursas.getInfo(j);
-//                        int idAlumnoCursa = cursa.getMatriculaCursa().getAlumnoMatricula().getIdAlumno();
-//
-//                        if (idAlumnoCursa == idAlumnoLogeado && idMateriaHorario == cursa.getMateriaCursa().getIdMateria()) {
-//                            String diaSemana = horario.getDiaSemana();
-//                            String nombreMateria = cursa.getMateriaCursa().getNombreMateria();
-//                            String horaInicio = horario.getHoraIncio();
-//                            String horaFin = horario.getHoraFin();
-//                            String mensaje = nombreMateria + " - " + horaInicio + " - " + horaFin;
-//
-//                            vistaCalendarioAlumno.AgregarEvento(diaSemana, mensaje);
-//                        }
-//                    }
-//                }
-//                vistaCalendarioAlumno.setVisible(true);
-//                this.setVisible(false);
-//            } 
-//            else {
-//                System.out.println("No hay alumno logeado en este momento.");
-//            }
-//        } 
-//        catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        
-    }//GEN-LAST:event_btnMostrarCalendarioActionPerformed
+        // try {
+        // VistaCalendarioAlumno vistaCalendarioAlumno = new VistaCalendarioAlumno();
+        //
+        // Integer idAlumnoLogeado = ControlAccesoAlumno.getIdAlumnoLogeado();
+        // if (idAlumnoLogeado != null) {
+        // ListaDinamica<Horario> listaHorarios = horarioControlDao.all();
+        // ListaDinamica<Cursa> listaCursas = cursaControlDao.all();
+        //
+        // for (int i = 0; i < listaHorarios.getLongitud(); i++) {
+        // Horario horario = listaHorarios.getInfo(i);
+        // int idMateriaHorario = horario.getMateriaHorario().getIdMateria();
+        //
+        // for (int j = 0; j < listaCursas.getLongitud(); j++) {
+        // Cursa cursa = listaCursas.getInfo(j);
+        // int idAlumnoCursa =
+        // cursa.getMatriculaCursa().getAlumnoMatricula().getIdAlumno();
+        //
+        // if (idAlumnoCursa == idAlumnoLogeado && idMateriaHorario ==
+        // cursa.getMateriaCursa().getIdMateria()) {
+        // String diaSemana = horario.getDiaSemana();
+        // String nombreMateria = cursa.getMateriaCursa().getNombreMateria();
+        // String horaInicio = horario.getHoraIncio();
+        // String horaFin = horario.getHoraFin();
+        // String mensaje = nombreMateria + " - " + horaInicio + " - " + horaFin;
+        //
+        // vistaCalendarioAlumno.AgregarEvento(diaSemana, mensaje);
+        // }
+        // }
+        // }
+        // vistaCalendarioAlumno.setVisible(true);
+        // this.setVisible(false);
+        // }
+        // else {
+        // System.out.println("No hay alumno logeado en este momento.");
+        // }
+        // }
+        // catch (Exception e) {
+        // e.printStackTrace();
+        // }
 
-    private void btnVerMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMateriaActionPerformed
+    }// GEN-LAST:event_btnMostrarCalendarioActionPerformed
+
+    private void btnVerMateriaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnVerMateriaActionPerformed
 
         VistaAlumnoMaterias vm = new VistaAlumnoMaterias();
         vm.setVisible(true);
         this.setVisible(false);
 
-    }//GEN-LAST:event_btnVerMateriaActionPerformed
+    }// GEN-LAST:event_btnVerMateriaActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+        // (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
+         * look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -500,25 +499,33 @@ public class VistaAlumnoPrincipal extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaAlumnoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaAlumnoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaAlumnoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaAlumnoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VistaAlumnoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        }
+        catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VistaAlumnoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        }
+        catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VistaAlumnoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        }
+        catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VistaAlumnoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        }
+        // </editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
                     new VistaAlumnoPrincipal().setVisible(true);
-                } 
+                }
                 catch (ListaVacia ex) {
-                    
+
                 }
             }
         });

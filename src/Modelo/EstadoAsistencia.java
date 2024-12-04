@@ -6,10 +6,8 @@ package Modelo;
  * @author Victor
  */
 public enum EstadoAsistencia {
-    
-    Presente("Presente"),
-    Ausente("Ausente"),
-    Justificado("Justificado");
+
+    Presente("Presente"), Ausente("Ausente"), Justificado("Justificado");
 
     private final String descripcion;
 
@@ -20,5 +18,5 @@ public enum EstadoAsistencia {
     public String getDescripcion() {
         return descripcion;
     }
-    
+
 }

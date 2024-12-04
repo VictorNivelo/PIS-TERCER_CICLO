@@ -11,12 +11,12 @@ import Modelo.PeriodoAcademico;
 public class ControladorPeriodo {
     private ListaDinamica<PeriodoAcademico> ListaPeriodos;
     private PeriodoAcademico periodoAcademico;
-    
-    public ControladorPeriodo(){
+
+    public ControladorPeriodo() {
         ListaPeriodos = new ListaDinamica<>();
     }
-    
-    public Boolean guardarPeriodo(){
+
+    public Boolean guardarPeriodo() {
         getPeriodoAcademico().setIdPeriodoAcademino(getListaPeriodos().getLongitud());
         getListaPeriodos().Agregar(getPeriodoAcademico());
         return true;
@@ -40,5 +40,5 @@ public class ControladorPeriodo {
     public void setPeriodoAcademico(PeriodoAcademico periodoAcademico) {
         this.periodoAcademico = periodoAcademico;
     }
-        
+
 }

@@ -9,7 +9,7 @@ import Modelo.Cursa;
  *
  * @author Victor
  */
-public class cursoDao extends DaoImplement<Cursa>{
+public class cursoDao extends DaoImplement<Cursa> {
     private ListaDinamica<Cursa> listaCursa = new ListaDinamica<>();
     private Cursa cursos;
 
@@ -27,7 +27,7 @@ public class cursoDao extends DaoImplement<Cursa>{
     }
 
     public Cursa getCursos() {
-        if(cursos == null){
+        if (cursos == null) {
             cursos = new Cursa();
         }
         return cursos;
@@ -36,9 +36,9 @@ public class cursoDao extends DaoImplement<Cursa>{
     public void setCursos(Cursa cursos) {
         this.cursos = cursos;
     }
-        
-    public Boolean Persist(){
-        cursos.setIdCurso(all().getLongitud()+1);
+
+    public Boolean Persist() {
+        cursos.setIdCurso(all().getLongitud() + 1);
         return Persist(cursos);
     }
 

@@ -11,7 +11,6 @@ import javax.swing.table.AbstractTableModel;
  * @author Victor
  */
 public class ModeloTablaCodigoCurso extends AbstractTableModel {
-
     private ListaDinamica<NombreCiclo> codigoCursoTabla;
 
     public ListaDinamica<NombreCiclo> getCodigoCursoTabla() {
@@ -21,7 +20,7 @@ public class ModeloTablaCodigoCurso extends AbstractTableModel {
     public void setCodigoCursoTabla(ListaDinamica<NombreCiclo> codigoCursoTabla) {
         this.codigoCursoTabla = codigoCursoTabla;
     }
-    
+
     @Override
     public int getRowCount() {
         return codigoCursoTabla.getLongitud();
@@ -31,39 +30,35 @@ public class ModeloTablaCodigoCurso extends AbstractTableModel {
     public int getColumnCount() {
         return 2;
     }
-    
+
     @Override
     public Object getValueAt(int Fila, int Columna) {
-
         try {
             NombreCiclo p = codigoCursoTabla.getInfo(Fila);
-
             switch (Columna) {
-                case 0:
-                    return (p != null) ? p.getIdNombreCiclo(): "";
-                case 1:
-                    return (p != null) ? p.getNombreCiclo(): "";
-                default:
-                    return null;
+            case 0:
+                return (p != null) ? p.getIdNombreCiclo() : "";
+            case 1:
+                return (p != null) ? p.getNombreCiclo() : "";
+            default:
+                return null;
             }
-        } 
+        }
         catch (ListaVacia | IndexOutOfBoundsException ex) {
-            
+            System.out.println(ex.getMessage());
         }
         return codigoCursoTabla;
     }
 
-
     @Override
     public String getColumnName(int column) {
         switch (column) {
-            case 0:
-                return "#";
-            case 1:
-                return "Nombre";
-
-            default:
-                return null;
+        case 0:
+            return "#";
+        case 1:
+            return "Nombre";
+        default:
+            return null;
         }
     }
 

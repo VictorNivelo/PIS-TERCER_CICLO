@@ -19,7 +19,7 @@ public class ModeloTablaPeriodo extends AbstractTableModel {
     public void setPeriodosTabla(ListaDinamica<PeriodoAcademico> periodosTabla) {
         this.periodosTabla = periodosTabla;
     }
-    
+
     @Override
     public int getRowCount() {
         return periodosTabla.getLongitud();
@@ -35,38 +35,37 @@ public class ModeloTablaPeriodo extends AbstractTableModel {
         try {
             PeriodoAcademico periodo = periodosTabla.getInfo(rowIndex);
             switch (columnIndex) {
-                case 0:
-                    return (periodo != null) ? periodo.getIdPeriodoAcademino() : "";
-                case 1:
-                    return (periodo != null) ? periodo.getFechaInicio() : "";
-                case 2:
-                    return (periodo != null) ? periodo.getFechaFin() : "";
-                case 3:
-                    return (periodo != null) ? periodo.getEstadoPeriodoAcedemico(): "";
-                default:
-                    return null;
+            case 0:
+                return (periodo != null) ? periodo.getIdPeriodoAcademino() : "";
+            case 1:
+                return (periodo != null) ? periodo.getFechaInicio() : "";
+            case 2:
+                return (periodo != null) ? periodo.getFechaFin() : "";
+            case 3:
+                return (periodo != null) ? periodo.getEstadoPeriodoAcedemico() : "";
+            default:
+                return null;
             }
-        } 
+        }
         catch (Exception e) {
             return null;
         }
-        
     }
-    
+
     @Override
-    public String getColumnName(int column){
+    public String getColumnName(int column) {
         switch (column) {
-            case 0:
-                return "#";
-            case 1:
-                return "Fecha inicio";
-            case 2:
-                return "Fecha fin";
-            case 3:
-                return "Estado";
-            default:
-                return null;
+        case 0:
+            return "#";
+        case 1:
+            return "Fecha inicio";
+        case 2:
+            return "Fecha fin";
+        case 3:
+            return "Estado";
+        default:
+            return null;
         }
     }
-    
+
 }

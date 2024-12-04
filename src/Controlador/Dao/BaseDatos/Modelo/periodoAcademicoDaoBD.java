@@ -11,7 +11,6 @@ import java.io.IOException;
  * @author Victor
  */
 public class periodoAcademicoDaoBD extends AdaptadorDaoBD<PeriodoAcademico> {
-
     private ListaDinamica<PeriodoAcademico> ListaAsistencias;
     private PeriodoAcademico asistencias = new PeriodoAcademico();
     private Integer Indice = -1;
@@ -56,7 +55,7 @@ public class periodoAcademicoDaoBD extends AdaptadorDaoBD<PeriodoAcademico> {
         try {
             modificar(this.asistencias);
             return true;
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
             return false;

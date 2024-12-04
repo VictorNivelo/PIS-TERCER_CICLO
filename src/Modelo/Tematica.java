@@ -9,9 +9,9 @@ public class Tematica {
     private Integer IdTematica;
     private String NombreTematica;
     private String FechaTematica;
-    
+
     public Tematica() {
-        
+
     }
 
     public Integer getIdTematica() {
@@ -37,10 +37,11 @@ public class Tematica {
     public void setFechaTematica(String FechaTematica) {
         this.FechaTematica = FechaTematica;
     }
-    
+
     @Override
     public String toString() {
-        return "idTematica=" + IdTematica + ", DiaTematica=" + FechaTematica + ", NombreTematica=" + NombreTematica + "\n";
+        return "idTematica=" + IdTematica + ", DiaTematica=" + FechaTematica + ", NombreTematica=" + NombreTematica
+                + "\n";
     }
-     
+
 }

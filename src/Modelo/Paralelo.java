@@ -11,7 +11,7 @@ public class Paralelo {
     private String Nombre;
 
     public Paralelo() {
-        
+
     }
 
     public Integer getIdParalelo() {
@@ -42,5 +42,5 @@ public class Paralelo {
     public String toString() {
         return Nombre + "\n";
     }
-    
+
 }

@@ -11,11 +11,11 @@ import java.io.File;
  * @author Victor
  */
 public class Bridge {
-    public static String URL = "Files"+ File.separatorChar;
+    public static String URL = "Files" + File.separatorChar;
     private static XStream conection;
 
     public static XStream getConection() {
-        if(conection == null){
+        if (conection == null) {
             conection = new XStream(new JettisonMappedXmlDriver());
             conection.addPermission(AnyTypePermission.ANY);
         }
@@ -25,5 +25,5 @@ public class Bridge {
     public static void setConection(XStream conection) {
         Bridge.conection = conection;
     }
-    
+
 }

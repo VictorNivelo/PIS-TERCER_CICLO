@@ -35,7 +35,7 @@ public interface InterfazDaoBD<T> {
     public ListaDinamica<T> listar();
 
     public T obtener(Integer id);
-    
+
     public Boolean eliminar(Integer id);
-    
+
 }

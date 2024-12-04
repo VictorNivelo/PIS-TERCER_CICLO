@@ -14,17 +14,12 @@ public class DibujarGrafo {
 
     public void updateFile(Grafo graph) throws Exception {
         StringBuilder paint = new StringBuilder();
-
         paint.append("var nodes = [");
-        
         for (int i = 1; i <= graph.num_vertice(); i++) {
             paint.append("{id: ").append(i).append(", label: 'V").append(i).append("'},");
         }
-        
         paint.append("];\n");
-
         paint.append("var edges = [");
-        
         for (int i = 1; i <= graph.num_vertice(); i++) {
             try {
                 ListaDinamica<Adyacencia> list = graph.adycentes(i);
@@ -36,14 +31,12 @@ public class DibujarGrafo {
                     }
                     paint.append("},");
                 }
-            } 
+            }
             catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        
         paint.append("];\n");
-
         paint.append("var container = document.getElementById(\"mynetwork\");\n");
         paint.append("var data = {\n");
         paint.append("  nodes: nodes,\n");
@@ -51,11 +44,9 @@ public class DibujarGrafo {
         paint.append("};\n");
         paint.append("var options = {};\n");
         paint.append("var network = new vis.Network(container, data, options);");
-
         FileWriter load = new FileWriter(URL);
         load.write(paint.toString());
         load.close();
     }
-    
-}
 
+}

@@ -14,5 +14,5 @@ public class VerticeException extends Exception {
     public VerticeException() {
         super("Vertice fuera de rango");
     }
-    
+
 }

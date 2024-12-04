@@ -9,11 +9,11 @@ import Modelo.Asistencia;
  *
  * @author Victor
  */
-public class asistenciaDao extends DaoImplement<Asistencia>{
+public class asistenciaDao extends DaoImplement<Asistencia> {
     private ListaDinamica<Asistencia> listaAsistencia = new ListaDinamica<>();
     private Asistencia asistencia;
 
-    public asistenciaDao(){
+    public asistenciaDao() {
         super(Asistencia.class);
     }
 
@@ -27,7 +27,7 @@ public class asistenciaDao extends DaoImplement<Asistencia>{
     }
 
     public Asistencia getAsistencia() {
-        if(asistencia == null){
+        if (asistencia == null) {
             asistencia = new Asistencia();
         }
         return asistencia;
@@ -36,10 +36,10 @@ public class asistenciaDao extends DaoImplement<Asistencia>{
     public void setAsistencia(Asistencia asistencia) {
         this.asistencia = asistencia;
     }
-    
-    public Boolean Persist(){
-        asistencia.setIdAsistencia(all().getLongitud()+1);
-        return  Persist(asistencia);
+
+    public Boolean Persist() {
+        asistencia.setIdAsistencia(all().getLongitud() + 1);
+        return Persist(asistencia);
     }
-    
+
 }

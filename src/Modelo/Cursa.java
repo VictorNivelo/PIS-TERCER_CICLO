@@ -8,21 +8,21 @@ package Modelo;
 public class Cursa {
     private Integer IdCurso;
     private String CodigoCursa;
-    
+
     private Paralelo ParaleloCursa;
     private Integer ParaleloID;
-    
+
     private Matricula matriculaCursa;
     private Integer MatriculaID;
-    
+
     private Materia MateriaCursa;
     private Integer MateriaID;
-    
+
     private Docente docenteCursa;
     private Integer DocenteID;
-    
+
     public Cursa() {
-        
+
     }
 
     public Integer getIdCurso() {
@@ -104,10 +104,10 @@ public class Cursa {
     public void setMateriaID(Integer MateriaID) {
         this.MateriaID = MateriaID;
     }
-    
+
     @Override
     public String toString() {
         return ParaleloCursa + "\n";
     }
-    
+
 }

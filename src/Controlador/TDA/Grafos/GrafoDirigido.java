@@ -8,11 +8,11 @@ import Controlador.TDA.ListaDinamica.ListaDinamica;
  *
  * @author Victor
  */
-public class GrafoDirigido extends Grafo{
+public class GrafoDirigido extends Grafo {
     private Integer numeroVertices;
     private Integer numeroAristas;
     private ListaDinamica<Adyacencia> ListaAdyacencia[];
-    
+
     @SuppressWarnings("unchecked")
     public GrafoDirigido(Integer num_vertices) {
         this.numeroVertices = num_vertices;
@@ -22,38 +22,42 @@ public class GrafoDirigido extends Grafo{
             ListaAdyacencia[i] = new ListaDinamica<>();
         }
     }
-    
+
     @Override
     public Integer num_vertice() {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated
+        // from
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         return numeroVertices;
     }
 
     @Override
     public Integer num_aristas() {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated
+        // from
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         return numeroAristas;
     }
 
     @Override
-    public Boolean existe_arista(Integer v1, Integer v2) throws Exception{
+    public Boolean existe_arista(Integer v1, Integer v2) throws Exception {
         Boolean band = false;
-        if(v1.intValue() <= numeroVertices && v2.intValue() <= numeroVertices){
+        if (v1.intValue() <= numeroVertices && v2.intValue() <= numeroVertices) {
             ListaDinamica<Adyacencia> listaA = ListaAdyacencia[v1];
-            for(int i = 0; i < listaA.getLongitud(); i++){
+            for (int i = 0; i < listaA.getLongitud(); i++) {
                 Adyacencia a = listaA.getInfo(i);
-                if(a.getDestino().intValue() == v2.intValue()){
+                if (a.getDestino().intValue() == v2.intValue()) {
                     band = true;
                     break;
                 }
             }
-                
         }
         else
             throw new VerticeException();
-        
         return band;
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated
+        // from
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -70,7 +74,9 @@ public class GrafoDirigido extends Grafo{
             }
         }
         return peso;
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated
+        // from
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -80,22 +86,28 @@ public class GrafoDirigido extends Grafo{
                 numeroAristas++;
                 ListaAdyacencia[v1].Agregar(new Adyacencia(v2, peso));
             }
-        } 
-        else 
+        }
+        else
             throw new VerticeException();
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated
+        // from
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void insertar_arista(Integer v1, Integer v2) throws Exception{
+    public void insertar_arista(Integer v1, Integer v2) throws Exception {
         insertar_arista(v1, v2, Double.NaN);
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated
+        // from
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ListaDinamica<Adyacencia> adycentes(Integer v1) throws Exception{
+    public ListaDinamica<Adyacencia> adycentes(Integer v1) throws Exception {
         return ListaAdyacencia[v1];
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated
+        // from
+        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public ListaDinamica<Adyacencia>[] getListaAdyacencia() {
@@ -121,6 +133,5 @@ public class GrafoDirigido extends Grafo{
     public void setNumeroAristas(Integer numeroAristas) {
         this.numeroAristas = numeroAristas;
     }
-    
-}
 
+}

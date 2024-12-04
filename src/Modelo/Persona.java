@@ -15,15 +15,15 @@ public class Persona {
     private String FechaNacimineto;
     private String Direccion;
     private String Telefono;
-    
+
     private Rol rolPersona;
     private Integer RolID;
-    
+
     private Cuenta cuentaPersona;
     private Integer CuendaID;
-    
+
     public Persona() {
-        
+
     }
 
     public Integer getIdPersona() {
@@ -132,7 +132,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return NumeroCedula + " " + Nombre  +" "+ Apellido +  "\n";
+        return NumeroCedula + " " + Nombre + " " + Apellido + "\n";
     }
 
 }

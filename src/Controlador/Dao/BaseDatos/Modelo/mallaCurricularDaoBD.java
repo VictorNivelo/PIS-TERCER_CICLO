@@ -11,7 +11,6 @@ import java.io.IOException;
  * @author Victor
  */
 public class mallaCurricularDaoBD extends AdaptadorDaoBD<MallaC> {
-
     private ListaDinamica<MallaC> ListaAsistencias;
     private MallaC asistencias = new MallaC();
     private Integer Indice = -1;
@@ -56,11 +55,11 @@ public class mallaCurricularDaoBD extends AdaptadorDaoBD<MallaC> {
         try {
             modificar(this.asistencias);
             return true;
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
-    
+
 }

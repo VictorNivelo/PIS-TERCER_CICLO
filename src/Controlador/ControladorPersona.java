@@ -15,8 +15,8 @@ public class ControladorPersona {
     public ControladorPersona() {
         listaPersonas = new ListaDinamica<>();
     }
-    
-    public Boolean guardarMatricula(){
+
+    public Boolean guardarMatricula() {
         getPersonas().setIdPersona(getListaPersonas().getLongitud());
         getListaPersonas().Agregar(getPersonas());
         return true;
@@ -31,7 +31,7 @@ public class ControladorPersona {
     }
 
     public Persona getPersonas() {
-        if(personas == null){
+        if (personas == null) {
             personas = new Persona();
         }
         return personas;
@@ -40,5 +40,5 @@ public class ControladorPersona {
     public void setPersonas(Persona personas) {
         this.personas = personas;
     }
-    
+
 }

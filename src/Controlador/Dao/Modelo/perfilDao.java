@@ -9,12 +9,12 @@ import Modelo.Perfil;
  *
  * @author Victor
  */
-public class perfilDao extends DaoImplement<Perfil>{
+public class perfilDao extends DaoImplement<Perfil> {
     private ListaDinamica<Perfil> ListaPerfil = new ListaDinamica<>();
     private Perfil perfil;
-    
-    public perfilDao(){
-        super (Perfil.class);
+
+    public perfilDao() {
+        super(Perfil.class);
     }
 
     public ListaDinamica<Perfil> getListaPerfil() {
@@ -27,7 +27,7 @@ public class perfilDao extends DaoImplement<Perfil>{
     }
 
     public Perfil getPerfil() {
-        if(perfil == null){
+        if (perfil == null) {
             perfil = new Perfil();
         }
         return perfil;
@@ -37,8 +37,8 @@ public class perfilDao extends DaoImplement<Perfil>{
         this.perfil = perfil;
     }
 
-    public Boolean Persist(){
-        perfil.setIdPerfil(all().getLongitud()+1);
+    public Boolean Persist() {
+        perfil.setIdPerfil(all().getLongitud() + 1);
         return Persist(perfil);
     }
 }

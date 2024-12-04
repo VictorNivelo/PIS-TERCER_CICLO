@@ -10,12 +10,12 @@ public class Docente {
     private String Especialidad;
     private String Titulacion;
     private String AniosExperiencia;
-    
+
     private Persona DatosDocente;
     private Integer PersonaDocenteID;
-    
+
     public Docente() {
-        
+
     }
 
     public Integer getIdDocente() {
@@ -65,10 +65,11 @@ public class Docente {
     public void setPersonaDocenteID(Integer PersonaDocenteID) {
         this.PersonaDocenteID = PersonaDocenteID;
     }
-    
+
     @Override
     public String toString() {
-        return DatosDocente.getNumeroCedula()+ " "+ DatosDocente.getNombre() +" "+ DatosDocente.getApellido() + "\n";
+        return DatosDocente.getNumeroCedula() + " " + DatosDocente.getNombre() + " " + DatosDocente.getApellido()
+                + "\n";
     }
 
 }

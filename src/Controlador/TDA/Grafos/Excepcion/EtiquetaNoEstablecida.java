@@ -14,5 +14,5 @@ public class EtiquetaNoEstablecida extends Exception {
     public EtiquetaNoEstablecida() {
         super("No esta etiquetado totalmente el grafo");
     }
-    
+
 }

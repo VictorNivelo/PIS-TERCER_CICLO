@@ -41,15 +41,15 @@ public class Nodo<E> {
     public void setSiguiente(Nodo<E> siguiente) {
         this.Siguiente = siguiente;
     }
-    
+
     @Override
     public String toString() {
         if (info != null) {
             return info.toString();
-        } 
+        }
         else {
             return null;
         }
     }
-    
+
 }

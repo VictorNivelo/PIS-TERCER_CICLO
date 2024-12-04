@@ -9,7 +9,7 @@ import Modelo.Facultad;
  *
  * @author Victor
  */
-public class facultadDao extends DaoImplement<Facultad>{
+public class facultadDao extends DaoImplement<Facultad> {
     private ListaDinamica<Facultad> listaFacultad = new ListaDinamica<>();
     private Facultad facultades;
 
@@ -27,7 +27,7 @@ public class facultadDao extends DaoImplement<Facultad>{
     }
 
     public Facultad getFacultades() {
-        if(facultades == null){
+        if (facultades == null) {
             facultades = new Facultad();
         }
         return facultades;
@@ -36,10 +36,10 @@ public class facultadDao extends DaoImplement<Facultad>{
     public void setFacultades(Facultad facultades) {
         this.facultades = facultades;
     }
-    
-    public Boolean Persist(){
-        facultades.setIdFacultad(all().getLongitud()+1);
+
+    public Boolean Persist() {
+        facultades.setIdFacultad(all().getLongitud() + 1);
         return Persist(facultades);
     }
-    
+
 }

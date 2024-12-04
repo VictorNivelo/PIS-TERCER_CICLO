@@ -10,15 +10,15 @@ public class Matricula {
     private String CodigoMatricula;
     private String FechaMatricula;
     private String EstadoMatricula;
-    
+
     private Alumno alumnoMatricula;
     private Integer AlumnoID;
-    
+
     private PeriodoAcademico periodoAcademicoMatricula;
     private Integer PeriodoID;
-    
+
     public Matricula() {
-        
+
     }
 
     public Integer getIdMatricula() {
@@ -87,7 +87,9 @@ public class Matricula {
 
     @Override
     public String toString() {
-        return CodigoMatricula +  " " + alumnoMatricula.getDatosAlumno().getNumeroCedula() +  " "+ alumnoMatricula.getDatosAlumno().getNombre() +" "+ alumnoMatricula.getDatosAlumno().getApellido()+"\n";
+        return CodigoMatricula + " " + alumnoMatricula.getDatosAlumno().getNumeroCedula() + " "
+                + alumnoMatricula.getDatosAlumno().getNombre() + " " + alumnoMatricula.getDatosAlumno().getApellido()
+                + "\n";
     }
-    
+
 }

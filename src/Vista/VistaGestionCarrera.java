@@ -24,33 +24,34 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
 
     /**
      * Creates new form VistaGestionCarrera
+     * 
      * @throws Controlador.TDA.ListaDinamica.Excepcion.ListaVacia
      */
     public VistaGestionCarrera() throws ListaVacia {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/Vista/RecursosGraficos/IconoPrograma.png")).getImage());
-        
+
         UtilVista.CargarComboFacultad(cbxFacultad);
         CargarTabla();
     }
-    
+
     private void CargarTabla() {
         mtc.setCarreraTabla(carreraControlDao.getListaCarreras());
         tblCarreras.setModel(mtc);
         tblCarreras.updateUI();
-//        cbxMalla.setSelectedIndex(-1);
+        // cbxMalla.setSelectedIndex(-1);
         cbxFacultad.setSelectedIndex(-1);
         cbxTipoBusqueda.setSelectedIndex(-1);
     }
-    
+
     private void Limpiar() throws ListaVacia {
         txtNombreCarrera.setText("");
         txtDuracionCarrera.setText("");
         txtNumeroCiclos.setText("");
-//        cbxMalla.setSelectedIndex(-1);
+        // cbxMalla.setSelectedIndex(-1);
         cbxFacultad.setSelectedIndex(-1);
-//        cbxTipoBusqueda.setSelectedIndex(-1);
+        // cbxTipoBusqueda.setSelectedIndex(-1);
         carreraControlDao.setCarreras(null);
         CargarTabla();
     }
@@ -59,7 +60,7 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
         int fila = tblCarreras.getSelectedRow();
         if (fila < 0) {
             JOptionPane.showMessageDialog(null, "Escoga un registro");
-        } 
+        }
         else {
             try {
                 carreraControlDao.setCarreras(mtc.getCarreraTabla().getInfo(fila));
@@ -69,7 +70,7 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
                 txtNumeroCiclos.setText(carreraControlDao.getCarreras().getNumeroCiclos().toString());
                 cbxFacultad.setSelectedIndex(carreraControlDao.getCarreras().getFacutadCarrera().getIdFacultad() - 1);
 
-            } 
+            }
             catch (Exception e) {
 
             }
@@ -95,18 +96,20 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
     private void Guardar() throws ListaVacia {
         if (cbxFacultad.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(null, "Falta seleccionar la facultad", "Error", JOptionPane.WARNING_MESSAGE);
-        } 
+        }
         else if (txtNombreCarrera.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Falta llenar nombre de la carrera", "Error", JOptionPane.WARNING_MESSAGE);
-        } 
+            JOptionPane.showMessageDialog(null, "Falta llenar nombre de la carrera", "Error",
+                    JOptionPane.WARNING_MESSAGE);
+        }
         else if (txtDuracionCarrera.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Falta llenar duracion", "Error", JOptionPane.WARNING_MESSAGE);
-        } 
+        }
         else if (txtNumeroCiclos.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Falta llenar el numero de ciclos", "Error", JOptionPane.WARNING_MESSAGE);
-        } 
+            JOptionPane.showMessageDialog(null, "Falta llenar el numero de ciclos", "Error",
+                    JOptionPane.WARNING_MESSAGE);
+        }
         else {
-            //Datos de carrera
+            // Datos de carrera
             String nombre = txtNombreCarrera.getText();
             Integer duracion = Integer.valueOf(txtDuracionCarrera.getText());
             Integer numeroCiclos = Integer.valueOf(txtNumeroCiclos.getText());
@@ -120,7 +123,8 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
             nuevaCarrera.setFacutadCarrera(facultadCarrera);
 
             if (carreraExiste(nuevaCarrera)) {
-                JOptionPane.showMessageDialog(null, "La carrera ya existe", "CARRERA EXISTENTE", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "La carrera ya existe", "CARRERA EXISTENTE",
+                        JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
 
@@ -130,11 +134,13 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
             try {
                 carreraControlDao.setCarreras(nuevaCarrera);
                 if (carreraControlDao.Persist()) {
-                    JOptionPane.showMessageDialog(null, "CARRERA GUARDADA EXITOSAMENTE", "INFORMACION", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "CARRERA GUARDADA EXITOSAMENTE", "INFORMACION",
+                            JOptionPane.INFORMATION_MESSAGE);
                     carreraControlDao.setCarreras(null);
                 }
                 else {
-                    JOptionPane.showMessageDialog(null, "NO SE PUEDE REGISTRAR", "INFORMACION", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "NO SE PUEDE REGISTRAR", "INFORMACION",
+                            JOptionPane.INFORMATION_MESSAGE);
                 }
                 Limpiar();
             }
@@ -143,14 +149,14 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
             }
         }
     }
-    
-    public  Integer OrdenSeleccionado(){
+
+    public Integer OrdenSeleccionado() {
         String OrdenO = cbxOrden.getSelectedItem().toString();
 
         if ("Asendente".equals(OrdenO)) {
             return 1;
         }
-        if("Desendente".equals(OrdenO)){
+        if ("Desendente".equals(OrdenO)) {
             return 0;
         }
         return null;
@@ -161,7 +167,8 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
      */
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -212,20 +219,16 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(jLabel2)
-                .addContainerGap(230, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup().addGap(150, 150, 150)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140,
+                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54).addComponent(jLabel2).addContainerGap(230, Short.MAX_VALUE)));
+        jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -256,14 +259,11 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Lista de carreras");
 
-        tblCarreras.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        tblCarreras.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
 
-            },
-            new String [] {
+        }, new String[] {
 
-            }
-        ));
+        }));
         tblCarreras.setSelectionBackground(new java.awt.Color(200, 222, 180));
         tblCarreras.setSelectionForeground(new java.awt.Color(0, 0, 0));
         tblCarreras.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -274,7 +274,8 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblCarreras);
 
         jButton2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Modificar.png"))); // NOI18N
+        jButton2.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Modificar.png"))); // NOI18N
         jButton2.setText("MODIFICAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,7 +284,8 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Eliminar.png"))); // NOI18N
+        jButton3.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Eliminar.png"))); // NOI18N
         jButton3.setText("ELIMINAR");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,7 +294,8 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
         });
 
         jButton4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Guardar.png"))); // NOI18N
+        jButton4.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Guardar.png"))); // NOI18N
         jButton4.setText("GUARDAR");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -301,7 +304,8 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
         });
 
         jButton5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Regresar.png"))); // NOI18N
+        jButton5.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Regresar.png"))); // NOI18N
         jButton5.setText("REGRESAR");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -318,11 +322,13 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Buscar");
 
-        cbxTipoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Duracion", "Numero de ciclos", "Facultad" }));
+        cbxTipoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(
+                new String[] { "Nombre", "Duracion", "Numero de ciclos", "Facultad" }));
         cbxTipoBusqueda.setSelectedIndex(-1);
 
         jButton6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Buscar.png"))); // NOI18N
+        jButton6.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Buscar.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -345,7 +351,8 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
 
         cbxFacultad.setMaximumSize(new java.awt.Dimension(32767, 38767));
 
-        btnOrdenar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Ordenar.png"))); // NOI18N
+        btnOrdenar.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Ordenar.png"))); // NOI18N
         btnOrdenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOrdenarActionPerformed(evt);
@@ -359,187 +366,214 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
         cbxOrden.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asendente", "Desendente" }));
         cbxOrden.setSelectedIndex(-1);
 
-        cbxTipoOrden.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Duracion", "Numero de ciclos", "Facultad" }));
+        cbxTipoOrden.setModel(new javax.swing.DefaultComboBoxModel<>(
+                new String[] { "Nombre", "Duracion", "Numero de ciclos", "Facultad" }));
         cbxTipoOrden.setSelectedIndex(-1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxFacultad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombreCarrera))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDuracionCarrera))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNumeroCiclos)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxTipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9)
+        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup().addContainerGap().addGroup(jPanel1Layout
+                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 311,
+                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup().addComponent(jButton5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton4))
+                        .addGroup(jPanel1Layout.createSequentialGroup().addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbxFacultad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 57,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNombreCarrera))
+                        .addGroup(jPanel1Layout.createSequentialGroup().addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDuracionCarrera))
+                        .addGroup(jPanel1Layout.createSequentialGroup().addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNumeroCiclos)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtBuscar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton6))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel12)
+                                .addGroup(jPanel1Layout.createSequentialGroup().addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbxTipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 150,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout
+                                                        .createSequentialGroup().addComponent(jButton3)
+                                                        .addPreferredGap(
+                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jButton2))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout
+                                                        .createSequentialGroup().addComponent(txtBuscar)
+                                                        .addPreferredGap(
+                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jButton6))))
+                                .addGroup(jPanel1Layout.createSequentialGroup().addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbxTipoOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 150,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbxOrden, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnOrdenar))
+                                .addComponent(jScrollPane1))
+                        .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE));
+        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel3).addComponent(jLabel6))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                        jPanel1Layout.createSequentialGroup().addGroup(jPanel1Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(btnOrdenar)
+                                                .addGroup(jPanel1Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(cbxOrden, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(cbxTipoOrden,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel12)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel7)
+                                        .addComponent(cbxTipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel9)
+                                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel11).addComponent(cbxFacultad,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxTipoOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnOrdenar))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel6))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnOrdenar)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cbxOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbxTipoOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel12)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7)
-                        .addComponent(cbxTipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel9)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel11)
-                        .addComponent(cbxFacultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jLabel4).addComponent(txtNombreCarrera,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jLabel5).addComponent(txtDuracionCarrera,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jLabel10).addComponent(txtNumeroCiclos,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtNombreCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtDuracionCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(txtNumeroCiclos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton5)
-                    .addComponent(jButton4))
-                .addContainerGap())
-        );
+                                .addComponent(jButton2).addComponent(jButton3).addComponent(jButton5)
+                                .addComponent(jButton4))
+                        .addContainerGap()));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+                jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+                jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton5ActionPerformed
+
         VistaPersonalAdministracion abrirLogin = new VistaPersonalAdministracion();
         abrirLogin.setVisible(true);
         this.setVisible(false);
-        
-    }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
+    }// GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
+
         try {
             if (cbxFacultad.getSelectedIndex() == -1) {
-                JOptionPane.showMessageDialog(null, "Falta seleccionar la facultad", "Error", JOptionPane.WARNING_MESSAGE);
-            } 
+                JOptionPane.showMessageDialog(null, "Falta seleccionar la facultad", "Error",
+                        JOptionPane.WARNING_MESSAGE);
+            }
             else if (txtNombreCarrera.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Falta llenar nombre de la carrera", "Error", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Falta llenar nombre de la carrera", "Error",
+                        JOptionPane.WARNING_MESSAGE);
             }
             else if (txtDuracionCarrera.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Falta llenar duracion", "Error", JOptionPane.WARNING_MESSAGE);
-            } 
+            }
             else if (txtNumeroCiclos.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Falta llenar el numero de ciclos", "Error", JOptionPane.WARNING_MESSAGE);
-            } 
-//            else if (cbxMalla.getSelectedIndex() == -1) {
-//                JOptionPane.showMessageDialog(null, "Falta seleccionar la malla", "Error", JOptionPane.ERROR_MESSAGE);
-//            } 
+                JOptionPane.showMessageDialog(null, "Falta llenar el numero de ciclos", "Error",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+            // else if (cbxMalla.getSelectedIndex() == -1) {
+            // JOptionPane.showMessageDialog(null, "Falta seleccionar la malla", "Error",
+            // JOptionPane.ERROR_MESSAGE);
+            // }
             else {
                 Guardar();
             }
-        } 
+        }
         catch (Exception e) {
 
         }
-        
-    }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+    }// GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+
         int fila = tblCarreras.getSelectedRow();
         if (fila < 0) {
             JOptionPane.showMessageDialog(null, "Escoga un registro");
-        } 
+        }
         else {
             if (cbxFacultad.getSelectedIndex() == -1) {
-                JOptionPane.showMessageDialog(null, "Falta seleccionar la facultad", "Error", JOptionPane.WARNING_MESSAGE);
-            } 
+                JOptionPane.showMessageDialog(null, "Falta seleccionar la facultad", "Error",
+                        JOptionPane.WARNING_MESSAGE);
+            }
             else if (txtNombreCarrera.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Falta llenar nombre de la carrera", "Error", JOptionPane.WARNING_MESSAGE);
-            } 
+                JOptionPane.showMessageDialog(null, "Falta llenar nombre de la carrera", "Error",
+                        JOptionPane.WARNING_MESSAGE);
+            }
             else if (txtDuracionCarrera.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Falta llenar duracion", "Error", JOptionPane.WARNING_MESSAGE);
-            } 
+            }
             else if (txtNumeroCiclos.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Falta llenar el numero de ciclos", "Error", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Falta llenar el numero de ciclos", "Error",
+                        JOptionPane.WARNING_MESSAGE);
             }
             else {
                 Integer IdCarrera = carreraControlDao.getCarreras().getIdCarrera();
@@ -560,34 +594,35 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
 
                 try {
                     Limpiar();
-                } 
+                }
                 catch (ListaVacia ex) {
 
                 }
             }
         }
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+    }// GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
+
         int fila = tblCarreras.getSelectedRow();
         if (fila < 0) {
             JOptionPane.showMessageDialog(null, "Escoga un registro");
-        } 
+        }
         else {
             carreraControlDao.Eliminar(fila);
             CargarTabla();
         }
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-    
+    }// GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton6ActionPerformed
+
         try {
             if (cbxTipoBusqueda.getSelectedIndex() == -1) {
-                JOptionPane.showMessageDialog(null, "Por favor seleccione donde quiere buscar", "Error", JOptionPane.WARNING_MESSAGE);
-            } 
+                JOptionPane.showMessageDialog(null, "Por favor seleccione donde quiere buscar", "Error",
+                        JOptionPane.WARNING_MESSAGE);
+            }
             else {
                 ListaDinamica<Carrera> lista = carreraControlDao.all();
 
@@ -595,26 +630,26 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
                 String TipoCampo = cbxTipoBusqueda.getSelectedItem().toString();
 
                 switch (TipoCampo) {
-                    case "Nombre":
-                        TipoCampo = "NombreCarrera";
-                        break;
-                    case "Duracion":
-                        TipoCampo = "Duracion";
-                        break;
-                    case "Numero de ciclos":
-                        TipoCampo = "NumeroCiclos";
-                        break;
-                    case "Facultad":
-                        TipoCampo = "facutadCarrera.NombreFacultad";
-                        break;
-                    default:
-                        throw new AssertionError();
+                case "Nombre":
+                    TipoCampo = "NombreCarrera";
+                    break;
+                case "Duracion":
+                    TipoCampo = "Duracion";
+                    break;
+                case "Numero de ciclos":
+                    TipoCampo = "NumeroCiclos";
+                    break;
+                case "Facultad":
+                    TipoCampo = "facutadCarrera.NombreFacultad";
+                    break;
+                default:
+                    throw new AssertionError();
                 }
                 ListaDinamica<Carrera> ResultadoBusqueda;
 
                 if (Campo.isEmpty()) {
                     ResultadoBusqueda = lista;
-                } 
+                }
                 else {
                     ResultadoBusqueda = UtilesControlador.BusquedaLineal(lista, Campo, TipoCampo);
                 }
@@ -622,72 +657,76 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
                 mtc.setCarreraTabla(ResultadoBusqueda);
                 mtc.fireTableDataChanged();
             }
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
         }
-        
-    }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void tblCarrerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCarrerasMouseClicked
-        
+    }// GEN-LAST:event_jButton6ActionPerformed
+
+    private void tblCarrerasMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tblCarrerasMouseClicked
+
         Seleccionar();
-        
-    }//GEN-LAST:event_tblCarrerasMouseClicked
 
-    private void txtNombreCarreraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreCarreraKeyTyped
-        
+    }// GEN-LAST:event_tblCarrerasMouseClicked
+
+    private void txtNombreCarreraKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtNombreCarreraKeyTyped
+
         char c = evt.getKeyChar();
 
         if (!Character.isLetter(c) && c != KeyEvent.VK_BACK_SPACE && c != ' ') {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Solo ingreso de letras", "CARACTER NO VALIDO", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Solo ingreso de letras", "CARACTER NO VALIDO",
+                    JOptionPane.WARNING_MESSAGE);
         }
         if (c != KeyEvent.VK_BACK_SPACE) {
 
         }
-        
-    }//GEN-LAST:event_txtNombreCarreraKeyTyped
 
-    private void txtDuracionCarreraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDuracionCarreraKeyTyped
-        
+    }// GEN-LAST:event_txtNombreCarreraKeyTyped
+
+    private void txtDuracionCarreraKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtDuracionCarreraKeyTyped
+
         Character c = evt.getKeyChar();
 
         if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE) {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Solo ingreso de numeros", "CARACTER NO VALIDO", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Solo ingreso de numeros", "CARACTER NO VALIDO",
+                    JOptionPane.WARNING_MESSAGE);
         }
-        
-    }//GEN-LAST:event_txtDuracionCarreraKeyTyped
 
-    private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
+    }// GEN-LAST:event_txtDuracionCarreraKeyTyped
+
+    private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnOrdenarActionPerformed
 
         try {
             if (cbxTipoOrden.getSelectedIndex() == -1) {
-                JOptionPane.showMessageDialog(null, "No ha seleccionado el campo", "FALTA SELCCIONAR", JOptionPane.WARNING_MESSAGE);
-            } 
+                JOptionPane.showMessageDialog(null, "No ha seleccionado el campo", "FALTA SELCCIONAR",
+                        JOptionPane.WARNING_MESSAGE);
+            }
             else if (cbxOrden.getSelectedIndex() == -1) {
-                JOptionPane.showMessageDialog(null, "No ha seleccionado el orden", "FALTA SELCCIONAR", JOptionPane.WARNING_MESSAGE);
-            } 
+                JOptionPane.showMessageDialog(null, "No ha seleccionado el orden", "FALTA SELCCIONAR",
+                        JOptionPane.WARNING_MESSAGE);
+            }
             else {
                 ListaDinamica<Carrera> lista = carreraControlDao.all();
                 String TipoCampo = cbxTipoOrden.getSelectedItem().toString();
 
                 switch (TipoCampo) {
-                    case "Nombre":
-                        TipoCampo = "NombreCarrera";
-                        break;
-                    case "Duracion":
-                        TipoCampo = "Duracion";
-                        break;
-                    case "Numero de ciclos":
-                        TipoCampo = "NumeroCiclos";
-                        break;
-                    case "Facultad":
-                        TipoCampo = "facutadCarrera.NombreFacultad";
-                        break;
-                    default:
-                        throw new AssertionError();
+                case "Nombre":
+                    TipoCampo = "NombreCarrera";
+                    break;
+                case "Duracion":
+                    TipoCampo = "Duracion";
+                    break;
+                case "Numero de ciclos":
+                    TipoCampo = "NumeroCiclos";
+                    break;
+                case "Facultad":
+                    TipoCampo = "facutadCarrera.NombreFacultad";
+                    break;
+                default:
+                    throw new AssertionError();
                 }
 
                 Integer orden = OrdenSeleccionado();
@@ -697,32 +736,36 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
                 mtc.setCarreraTabla(resultadoOrdenado);
                 mtc.fireTableDataChanged();
             }
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
         }
 
-    }//GEN-LAST:event_btnOrdenarActionPerformed
+    }// GEN-LAST:event_btnOrdenarActionPerformed
 
-    private void txtNumeroCiclosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroCiclosKeyTyped
-        
+    private void txtNumeroCiclosKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtNumeroCiclosKeyTyped
+
         Character c = evt.getKeyChar();
 
         if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE) {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Solo ingreso de numeros", "CARACTER NO VALIDO", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Solo ingreso de numeros", "CARACTER NO VALIDO",
+                    JOptionPane.WARNING_MESSAGE);
         }
-        
-    }//GEN-LAST:event_txtNumeroCiclosKeyTyped
+
+    }// GEN-LAST:event_txtNumeroCiclosKeyTyped
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+        // (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
+         * look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -731,16 +774,24 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaGestionCarrera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaGestionCarrera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaGestionCarrera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaGestionCarrera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VistaGestionCarrera.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        }
+        catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VistaGestionCarrera.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        }
+        catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VistaGestionCarrera.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        }
+        catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VistaGestionCarrera.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        }
+        // </editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -750,9 +801,9 @@ public class VistaGestionCarrera extends javax.swing.JFrame {
                     new VistaGestionCarrera().setVisible(true);
                 }
                 catch (Exception e) {
-                    
+
                 }
-                
+
             }
         });
     }

@@ -41,7 +41,7 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
         cbxEstadoPresentacion.setEnabled(false);
         CargarTabla();
     }
-    
+
     private void CargarTabla() {
         mtp.setPresentacionTabla(presentacionControlDao.getListaPresentacion());
         tblPresentacion.setModel(mtp);
@@ -49,7 +49,7 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
         cbxEstadoPresentacion.setSelectedIndex(0);
         cbxTipoOrden.setSelectedIndex(-1);
     }
-    
+
     private void Limpiar() throws ListaVacia {
         txtCodigo.setText("");
         txtImagen.setText("");
@@ -61,31 +61,32 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
         presentacionControlDao.setPresentaciones(null);
         CargarTabla();
     }
-    
-    private void Seleccionar(){
+
+    private void Seleccionar() {
         int fila = tblPresentacion.getSelectedRow();
-        if(fila < 0){
+        if (fila < 0) {
             JOptionPane.showMessageDialog(null, "Escoga un registro");
         }
-        else{
+        else {
             try {
                 cbxEstadoPresentacion.setEnabled(true);
                 presentacionControlDao.setPresentaciones(mtp.getPresentacionTabla().getInfo(fila));
-                
+
                 txtCodigo.setText(presentacionControlDao.getPresentaciones().getCodigo());
                 txtImagen.setText(presentacionControlDao.getPresentaciones().getImagen());
                 txtTitulo.setText(presentacionControlDao.getPresentaciones().getTitulo());
                 txtContenido.setText(presentacionControlDao.getPresentaciones().getContenido());
                 txtTiempo.setText(presentacionControlDao.getPresentaciones().getTiempo());
-                cbxEstadoPresentacion.setSelectedItem(presentacionControlDao.getPresentaciones().getEstadoPresentacion());
-                
-            } 
+                cbxEstadoPresentacion
+                        .setSelectedItem(presentacionControlDao.getPresentaciones().getEstadoPresentacion());
+
+            }
             catch (Exception e) {
-                
+
             }
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     private String generarCodigo() throws ListaVacia {
         int ultimoId = 0;
@@ -93,13 +94,14 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
         String presentacionURL = "Files" + File.separatorChar + "Presentacion.json";
 
         try {
-            ListaDinamica<Presentacion> listaPresentacion = (ListaDinamica<Presentacion>) Bridge.getConection().fromXML(new FileReader(presentacionURL));
+            ListaDinamica<Presentacion> listaPresentacion = (ListaDinamica<Presentacion>) Bridge.getConection()
+                    .fromXML(new FileReader(presentacionURL));
 
             if (!listaPresentacion.EstaVacio()) {
                 Presentacion ultimaPresentacion = listaPresentacion.getInfo(listaPresentacion.getLongitud() - 1);
                 ultimoId = ultimaPresentacion.getIdPresentacion();
             }
-        } 
+        }
         catch (FileNotFoundException e) {
         }
 
@@ -111,19 +113,21 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
     private void Guardar() throws ListaVacia {
 
         if (txtImagen.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Falta llenar seleccionar la imagen", "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Falta llenar seleccionar la imagen", "Error",
+                    JOptionPane.WARNING_MESSAGE);
         }
         else if (txtTiempo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Falta llenar el tiempo", "Error", JOptionPane.WARNING_MESSAGE);
         }
         else if (txtTitulo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Falta llenar el titulo", "Error", JOptionPane.WARNING_MESSAGE);
-        } 
+        }
         else if (txtContenido.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Falta llenar el contenido", "Error", JOptionPane.WARNING_MESSAGE);
-        } 
+        }
         else if (cbxEstadoPresentacion.getSelectedIndex() == -1) {
-            JOptionPane.showMessageDialog(null, "Falta seleccionar el estado de la presentacion", "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Falta seleccionar el estado de la presentacion", "Error",
+                    JOptionPane.WARNING_MESSAGE);
         }
         else {
             Integer IdPresentacion = listaPresentacion.getLongitud() + 1;
@@ -132,18 +136,18 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
             String Titulo = txtTitulo.getText();
             String Contenido = txtContenido.getText();
             String Estado = cbxEstadoPresentacion.getSelectedItem().toString();
-                        
+
             presentacionControlDao.getPresentaciones().setIdPresentacion(IdPresentacion);
-            
+
             presentacionControlDao.getPresentaciones().setCodigo(Codigo);
             presentacionControlDao.getPresentaciones().setTitulo(Titulo);
             presentacionControlDao.getPresentaciones().setTiempo(Tiempo);
             presentacionControlDao.getPresentaciones().setContenido(Contenido);
             presentacionControlDao.getPresentaciones().setEstadoPresentacion(Estado);
-            
+
             String nombreUnico = UUID.randomUUID().toString();
             rutaImagenGuardada = "src/Vista/RecursosGraficos/Fondos/" + nombreUnico + ".jpg";
-                        
+
             System.out.println("Ruta de destino: " + rutaImagenGuardada);
 
             try {
@@ -155,27 +159,30 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
                     }
                     Files.copy(ImagenPresentacion.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 }
-            } 
+            }
             catch (Exception e) {
                 e.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error al copiar el archivo: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error al copiar el archivo: " + e.getMessage(), "ERROR",
+                        JOptionPane.ERROR_MESSAGE);
             }
-            
+
             presentacionControlDao.getPresentaciones().setImagen(rutaImagenGuardada);
 
             cbxEstadoPresentacion.setEnabled(false);
-                        
+
             if (presentacionControlDao.Persist()) {
-                JOptionPane.showMessageDialog(null, "PRESENTACION GUARDADA EXISTOSAMENTE", "INFORMACION", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "PRESENTACION GUARDADA EXISTOSAMENTE", "INFORMACION",
+                        JOptionPane.INFORMATION_MESSAGE);
                 presentacionControlDao.setPresentaciones(null);
-            } 
+            }
             else {
-                JOptionPane.showMessageDialog(null, "NO SE PUEDE REGISTRAR", "INFORMACION", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "NO SE PUEDE REGISTRAR", "INFORMACION",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
             Limpiar();
         }
     }
-    
+
     private File CargarFoto() throws Exception {
         File obj = null;
         JFileChooser choosser = new JFileChooser();
@@ -191,13 +198,13 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
         if (resp == JFileChooser.APPROVE_OPTION) {
             obj = choosser.getSelectedFile();
             System.out.println("Foto cargada correctamente");
-        } 
+        }
         else {
             System.out.println("No se puede cargar la imagen");
         }
         return obj;
     }
-    
+
     private void mostrarImagenEnVentana(String rutaImagen) {
         try {
             if (rutaImagen != null && !rutaImagen.isEmpty()) {
@@ -205,17 +212,17 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
                 f.mostrarImagen(rutaImagen);
                 f.setVisible(true);
             }
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al mostrar la imagen", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     public static void copiarArchivo(File origen, File destino) throws Exception {
-        Files.copy(origen.toPath(),(destino).toPath(),StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(origen.toPath(), (destino).toPath(), StandardCopyOption.REPLACE_EXISTING);
     }
-    
+
     public static String extension(String fileName) {
         String extension = "";
 
@@ -225,26 +232,27 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
         }
         return extension;
     }
-    
-    public  Integer OrdenSeleccionado(){
+
+    public Integer OrdenSeleccionado() {
         String OrdenO = cbxOrden.getSelectedItem().toString();
 
         if ("Asendente".equals(OrdenO)) {
             return 1;
         }
-        if("Desendente".equals(OrdenO)){
+        if ("Desendente".equals(OrdenO)) {
             return 0;
         }
         return null;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
      */
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -298,20 +306,17 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addContainerGap(111, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup().addGap(150, 150, 150)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140,
+                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jLabel2)
+                        .addContainerGap(111, Short.MAX_VALUE)));
+        jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE));
 
         jLabel3.setFont(new java.awt.Font("Candara Light", 1, 32)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -358,7 +363,8 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtContenido);
 
         btnGuardar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Guardar.png"))); // NOI18N
+        btnGuardar.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Guardar.png"))); // NOI18N
         btnGuardar.setText("GUARDAR");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -367,7 +373,8 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Regresar.png"))); // NOI18N
+        jButton2.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Regresar.png"))); // NOI18N
         jButton2.setText("REGRESAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -375,14 +382,11 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
             }
         });
 
-        tblPresentacion.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        tblPresentacion.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
 
-            },
-            new String [] {
+        }, new String[] {
 
-            }
-        ));
+        }));
         tblPresentacion.setSelectionBackground(new java.awt.Color(200, 222, 180));
         tblPresentacion.setSelectionForeground(new java.awt.Color(0, 0, 0));
         tblPresentacion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -393,7 +397,8 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tblPresentacion);
 
         btnModificar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Modificar.png"))); // NOI18N
+        btnModificar.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Modificar.png"))); // NOI18N
         btnModificar.setText("MODIFICAR");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,7 +407,8 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
         });
 
         btnEliminar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Eliminar.png"))); // NOI18N
+        btnEliminar.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Eliminar.png"))); // NOI18N
         btnEliminar.setText("ELIMINAR");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -421,7 +427,8 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Buscar por");
 
-        cbxTipoOrden.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Imagen", "Tiempo", "Contenido", "Estado" }));
+        cbxTipoOrden.setModel(new javax.swing.DefaultComboBoxModel<>(
+                new String[] { "Codigo", "Imagen", "Tiempo", "Contenido", "Estado" }));
         cbxTipoOrden.setSelectedIndex(-1);
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -429,7 +436,8 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
         jLabel10.setText("Buscar");
 
         btnBuscar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Buscar.png"))); // NOI18N
+        btnBuscar.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Buscar.png"))); // NOI18N
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -441,7 +449,8 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
         jLabel11.setText("Codigo");
 
         btnCargarImagen.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnCargarImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Cargar.png"))); // NOI18N
+        btnCargarImagen.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Cargar.png"))); // NOI18N
         btnCargarImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCargarImagenActionPerformed(evt);
@@ -462,204 +471,229 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
         cbxOrden.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asendente", "Desendente" }));
         cbxOrden.setSelectedIndex(-1);
 
-        btnOrdenar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Ordenar.png"))); // NOI18N
+        btnOrdenar.setIcon(
+                new javax.swing.ImageIcon(getClass().getResource("/Vista/RecursosGraficos/Botones/Ordenar.png"))); // NOI18N
         btnOrdenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOrdenarActionPerformed(evt);
             }
         });
 
-        cbxTipoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Imagen", "Tiempo", "Contenido", "Estado" }));
+        cbxTipoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(
+                new String[] { "Codigo", "Imagen", "Tiempo", "Contenido", "Estado" }));
         cbxTipoBusqueda.setSelectedIndex(-1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                        .addComponent(btnGuardar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxEstadoPresentacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createSequentialGroup().addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createSequentialGroup().addComponent(jButton2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52,
+                                                Short.MAX_VALUE)
+                                        .addComponent(btnGuardar))
+                                .addGroup(jPanel1Layout.createSequentialGroup().addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbxEstadoPresentacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createSequentialGroup().addGroup(jPanel1Layout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(12, 12, 12)
+                                        .addGroup(jPanel1Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtTiempo, javax.swing.GroupLayout.DEFAULT_SIZE, 246,
+                                                        Short.MAX_VALUE)
+                                                .addComponent(txtTitulo)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                        jPanel1Layout.createSequentialGroup().addGap(58, 58, 58).addComponent(txtImagen)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnCargarImagen))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 46,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtCodigo))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1))
                         .addGap(12, 12, 12)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTiempo, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                            .addComponent(txtTitulo)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(txtImagen)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCargarImagen))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCodigo))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxTipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 619, Short.MAX_VALUE)
-                        .addComponent(btnEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnModificar))
-                    .addComponent(jScrollPane2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxTipoOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnOrdenar)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel4))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cbxOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbxTipoOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel13))
-                            .addComponent(btnOrdenar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar)
-                    .addComponent(jLabel11)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxTipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createSequentialGroup().addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbxTipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 150,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtBuscar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnBuscar))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                        jPanel1Layout.createSequentialGroup().addGap(50, 619, Short.MAX_VALUE)
+                                                .addComponent(btnEliminar)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnModificar))
+                                .addComponent(jScrollPane2)
+                                .addGroup(jPanel1Layout.createSequentialGroup().addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbxTipoOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 150,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbxOrden, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnOrdenar)))
+                        .addContainerGap()));
+        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel5)
-                                .addComponent(txtImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnCargarImagen))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel3).addComponent(jLabel4))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                        jPanel1Layout.createSequentialGroup().addGroup(jPanel1Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel1Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(cbxOrden, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(cbxTipoOrden,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel13))
+                                                .addComponent(btnOrdenar))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel9).addComponent(jLabel10)
+                                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnBuscar).addComponent(jLabel11)
+                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbxTipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel1Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jLabel5)
+                                                        .addComponent(txtImagen, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(btnCargarImagen))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jLabel7).addComponent(txtTiempo,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jLabel12).addComponent(txtTitulo,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jLabel8).addComponent(cbxEstadoPresentacion,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(cbxEstadoPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar)
-                    .addComponent(jButton2)
-                    .addComponent(btnModificar)
-                    .addComponent(btnEliminar))
-                .addContainerGap())
-        );
+                                .addComponent(btnGuardar).addComponent(jButton2).addComponent(btnModificar)
+                                .addComponent(btnEliminar))
+                        .addContainerGap()));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+                jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+                jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnGuardarActionPerformed
 
         if (txtImagen.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Falta llenar seleccionar la imagen", "Error", JOptionPane.WARNING_MESSAGE);
-        } 
+            JOptionPane.showMessageDialog(null, "Falta llenar seleccionar la imagen", "Error",
+                    JOptionPane.WARNING_MESSAGE);
+        }
         else if (txtTiempo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Falta llenar el tiempo", "Error", JOptionPane.WARNING_MESSAGE);
         }
         else if (txtTitulo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Falta llenar el titulo", "Error", JOptionPane.WARNING_MESSAGE);
-        } 
+        }
         else if (txtContenido.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Falta llenar el contenido", "Error", JOptionPane.WARNING_MESSAGE);
-        } 
+        }
         else if (cbxEstadoPresentacion.getSelectedIndex() == -1) {
-            JOptionPane.showMessageDialog(null, "Falta seleccionar el estado de la presentacion", "Error", JOptionPane.WARNING_MESSAGE);
-        } 
+            JOptionPane.showMessageDialog(null, "Falta seleccionar el estado de la presentacion", "Error",
+                    JOptionPane.WARNING_MESSAGE);
+        }
         else {
             try {
                 Guardar();
-            } 
+            }
             catch (Exception e) {
-                
+
             }
         }
 
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }// GEN-LAST:event_btnGuardarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+
         VistaPersonalAdministracion vpa = new VistaPersonalAdministracion();
         vpa.setVisible(true);
         this.setVisible(false);
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+    }// GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnModificarActionPerformed
 
         int fila = tblPresentacion.getSelectedRow();
         if (fila < 0) {
             JOptionPane.showMessageDialog(null, "Escoga un registro");
-        } 
+        }
         else {
             if (txtImagen.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Falta llenar seleccionar la imagen", "Error", JOptionPane.WARNING_MESSAGE);
-            } 
+                JOptionPane.showMessageDialog(null, "Falta llenar seleccionar la imagen", "Error",
+                        JOptionPane.WARNING_MESSAGE);
+            }
             else if (txtTiempo.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Falta llenar el tiempo", "Error", JOptionPane.WARNING_MESSAGE);
             }
@@ -668,10 +702,11 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
             }
             else if (txtContenido.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Falta llenar el contenido", "Error", JOptionPane.WARNING_MESSAGE);
-            } 
+            }
             else if (cbxEstadoPresentacion.getSelectedIndex() == -1) {
-                JOptionPane.showMessageDialog(null, "Falta seleccionar el estado de la presentacion", "Error", JOptionPane.WARNING_MESSAGE);
-            } 
+                JOptionPane.showMessageDialog(null, "Falta seleccionar el estado de la presentacion", "Error",
+                        JOptionPane.WARNING_MESSAGE);
+            }
             else {
 
                 Integer IdPresentacion = presentacionControlDao.getPresentaciones().getIdPresentacion();
@@ -696,22 +731,22 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
 
                 try {
                     Limpiar();
-                } 
+                }
                 catch (Exception e) {
 
                 }
             }
         }
         cbxEstadoPresentacion.setEnabled(false);
-        
-    }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
+    }// GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEliminarActionPerformed
+
         int fila = tblPresentacion.getSelectedRow();
         if (fila < 0) {
             JOptionPane.showMessageDialog(null, "Escoga un registro");
-        } 
+        }
         else {
             try {
                 String rutaImagenEliminar = presentacionControlDao.getPresentaciones().getImagen();
@@ -721,31 +756,32 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
                         archivoEliminar.delete();
                     }
                 }
-            } 
+            }
             catch (Exception e) {
                 e.printStackTrace();
             }
 
             presentacionControlDao.Eliminar(fila);
-            
+
             CargarTabla();
 
             try {
                 Limpiar();
-            } 
+            }
             catch (ListaVacia ex) {
                 ex.printStackTrace();
             }
         }
-        
-    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
+    }// GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBuscarActionPerformed
+
         try {
             if (cbxTipoBusqueda.getSelectedIndex() == -1) {
-                JOptionPane.showMessageDialog(null, "Porfavor seleccione donde quiere buscar", "Error", JOptionPane.WARNING_MESSAGE);
-            } 
+                JOptionPane.showMessageDialog(null, "Porfavor seleccione donde quiere buscar", "Error",
+                        JOptionPane.WARNING_MESSAGE);
+            }
             else {
                 ListaDinamica<Presentacion> lista = presentacionControlDao.all();
 
@@ -753,103 +789,106 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
                 String TipoCampo = cbxTipoOrden.getSelectedItem().toString();
 
                 switch (TipoCampo) {
-                    case "Codigo":
-                        TipoCampo = "Codigo";
-                        break;
-                    case "Imagen":
-                        TipoCampo = "Imagen";
-                        break;
-                    case "Titulo":
-                        TipoCampo = "Titulo";
-                        break;
-                    case "Contenido":
-                        TipoCampo = "Contenido";
-                        break;
-                    case "Tiempo":
-                        TipoCampo = "Tiempo";
-                        break;
-                    case "Estado":
-                        TipoCampo = "EstadoPresentacion";
-                        break;
-                    default:
-                        throw new AssertionError();
+                case "Codigo":
+                    TipoCampo = "Codigo";
+                    break;
+                case "Imagen":
+                    TipoCampo = "Imagen";
+                    break;
+                case "Titulo":
+                    TipoCampo = "Titulo";
+                    break;
+                case "Contenido":
+                    TipoCampo = "Contenido";
+                    break;
+                case "Tiempo":
+                    TipoCampo = "Tiempo";
+                    break;
+                case "Estado":
+                    TipoCampo = "EstadoPresentacion";
+                    break;
+                default:
+                    throw new AssertionError();
                 }
 
-                ListaDinamica<Presentacion> ResultadoBusqueda = UtilesControlador.BusquedaLineal(lista, Campo, TipoCampo);
+                ListaDinamica<Presentacion> ResultadoBusqueda = UtilesControlador.BusquedaLineal(lista, Campo,
+                        TipoCampo);
 
                 mtp.setPresentacionTabla(ResultadoBusqueda);
                 mtp.fireTableDataChanged();
             }
-        } 
+        }
         catch (Exception e) {
 
         }
-        
-    }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void tblPresentacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPresentacionMouseClicked
-        
+    }// GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tblPresentacionMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tblPresentacionMouseClicked
+
         Seleccionar();
-        
-    }//GEN-LAST:event_tblPresentacionMouseClicked
 
-    private void btnCargarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarImagenActionPerformed
-        
+    }// GEN-LAST:event_tblPresentacionMouseClicked
+
+    private void btnCargarImagenActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCargarImagenActionPerformed
+
         try {
             ImagenPresentacion = CargarFoto();
             if (ImagenPresentacion != null) {
                 txtImagen.setText(ImagenPresentacion.getAbsolutePath());
             }
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al cargar la imagen", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-        
-    }//GEN-LAST:event_btnCargarImagenActionPerformed
 
-    private void txtImagenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtImagenMouseClicked
+    }// GEN-LAST:event_btnCargarImagenActionPerformed
+
+    private void txtImagenMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_txtImagenMouseClicked
 
         if (evt.getClickCount() == 2) {
             mostrarImagenEnVentana(txtImagen.getText());
         }
-        
-    }//GEN-LAST:event_txtImagenMouseClicked
 
-    private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarActionPerformed
+    }// GEN-LAST:event_txtImagenMouseClicked
+
+    private void btnOrdenarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnOrdenarActionPerformed
 
         try {
             if (cbxTipoOrden.getSelectedIndex() == -1) {
-                JOptionPane.showMessageDialog(null, "No ha seleccionado el campo", "FALTA SELCCIONAR", JOptionPane.WARNING_MESSAGE);
-            } 
+                JOptionPane.showMessageDialog(null, "No ha seleccionado el campo", "FALTA SELCCIONAR",
+                        JOptionPane.WARNING_MESSAGE);
+            }
             else if (cbxOrden.getSelectedIndex() == -1) {
-                JOptionPane.showMessageDialog(null, "No ha seleccionado el orden", "FALTA SELCCIONAR", JOptionPane.WARNING_MESSAGE);
-            } 
+                JOptionPane.showMessageDialog(null, "No ha seleccionado el orden", "FALTA SELCCIONAR",
+                        JOptionPane.WARNING_MESSAGE);
+            }
             else {
                 ListaDinamica<Presentacion> lista = presentacionControlDao.all();
                 String TipoCampo = cbxTipoOrden.getSelectedItem().toString();
 
                 switch (TipoCampo) {
-                    case "Codigo":
-                        TipoCampo = "Codigo";
-                        break;
-                    case "Imagen":
-                        TipoCampo = "Imagen";
-                        break;
-                    case "Titulo":
-                        TipoCampo = "Titulo";
-                        break;
-                    case "Contenido":
-                        TipoCampo = "Contenido";
-                        break;
-                    case "Tiempo":
-                        TipoCampo = "Tiempo";
-                        break;
-                    case "Estado":
-                        TipoCampo = "EstadoPresentacion";
-                        break;
-                    default:
-                        throw new AssertionError();
+                case "Codigo":
+                    TipoCampo = "Codigo";
+                    break;
+                case "Imagen":
+                    TipoCampo = "Imagen";
+                    break;
+                case "Titulo":
+                    TipoCampo = "Titulo";
+                    break;
+                case "Contenido":
+                    TipoCampo = "Contenido";
+                    break;
+                case "Tiempo":
+                    TipoCampo = "Tiempo";
+                    break;
+                case "Estado":
+                    TipoCampo = "EstadoPresentacion";
+                    break;
+                default:
+                    throw new AssertionError();
                 }
 
                 Integer orden = OrdenSeleccionado();
@@ -859,35 +898,39 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
                 mtp.setPresentacionTabla(resultadoOrdenado);
                 mtp.fireTableDataChanged();
             }
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
         }
-        
-    }//GEN-LAST:event_btnOrdenarActionPerformed
 
-    private void txtTiempoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTiempoKeyTyped
-        
+    }// GEN-LAST:event_btnOrdenarActionPerformed
+
+    private void txtTiempoKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtTiempoKeyTyped
+
         Character c = evt.getKeyChar();
 
         if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE) {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Solo ingreso de numeros", "CARACTER NO VALIDO", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Solo ingreso de numeros", "CARACTER NO VALIDO",
+                    JOptionPane.WARNING_MESSAGE);
         }
         if (txtTiempo.getText().length() >= 10 && c != KeyEvent.VK_BACK_SPACE) {
             evt.consume();
         }
-        
-    }//GEN-LAST:event_txtTiempoKeyTyped
+
+    }// GEN-LAST:event_txtTiempoKeyTyped
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+        // (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
+         * look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -896,16 +939,24 @@ public class VistaGestionInterfazPrincipal extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaGestionInterfazPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaGestionInterfazPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaGestionInterfazPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaGestionInterfazPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VistaGestionInterfazPrincipal.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VistaGestionInterfazPrincipal.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VistaGestionInterfazPrincipal.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VistaGestionInterfazPrincipal.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        // </editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

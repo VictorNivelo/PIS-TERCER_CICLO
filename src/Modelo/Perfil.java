@@ -15,7 +15,7 @@ public class Perfil {
     private Persona personaPerfil;
 
     public Perfil() {
-        
+
     }
 
     public Integer getIdPerfil() {
@@ -76,7 +76,8 @@ public class Perfil {
 
     @Override
     public String toString() {
-        return "Id:" + IdPerfil + ", Nombre:" + NombreUsuario + ", Foto:" + FotoUsuario + ", Descripcion:" + DescripcionUsuario ;
-    } 
-    
+        return "Id:" + IdPerfil + ", Nombre:" + NombreUsuario + ", Foto:" + FotoUsuario + ", Descripcion:"
+                + DescripcionUsuario;
+    }
+
 }

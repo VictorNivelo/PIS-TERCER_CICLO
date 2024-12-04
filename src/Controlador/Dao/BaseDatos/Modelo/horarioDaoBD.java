@@ -11,7 +11,6 @@ import java.io.IOException;
  * @author Victor
  */
 public class horarioDaoBD extends AdaptadorDaoBD<Horario> {
-
     private ListaDinamica<Horario> ListaAsistencias;
     private Horario asistencias = new Horario();
     private Integer Indice = -1;
@@ -56,11 +55,11 @@ public class horarioDaoBD extends AdaptadorDaoBD<Horario> {
         try {
             modificar(this.asistencias);
             return true;
-        } 
+        }
         catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
-    
+
 }

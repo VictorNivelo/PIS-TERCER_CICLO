@@ -9,7 +9,7 @@ public class Facultad {
     private Integer IdFacultad;
     private String NombreFacultad;
     private String FechaCreacion;
-    
+
     private Universidad universidadFacultad;
     private Integer UniversidadID;
 
@@ -56,10 +56,10 @@ public class Facultad {
     public void setUniversidadID(Integer UniversidadID) {
         this.UniversidadID = UniversidadID;
     }
-        
+
     @Override
     public String toString() {
-        return NombreFacultad +  "\n";
+        return NombreFacultad + "\n";
     }
-    
+
 }

@@ -9,11 +9,10 @@ import Modelo.Matricula;
  *
  * @author romer
  */
-public class matriculaDao extends DaoImplement<Matricula>{
-    
+public class matriculaDao extends DaoImplement<Matricula> {
     private ListaDinamica<Matricula> ListaMatriculas;
     private Matricula matricula;
-    
+
     public matriculaDao() {
         super(Matricula.class);
     }
@@ -25,7 +24,7 @@ public class matriculaDao extends DaoImplement<Matricula>{
 
     public void setListaMatriculas(ListaDinamica<Matricula> ListaMatriculas) {
         this.ListaMatriculas = ListaMatriculas;
-    } 
+    }
 
     public Matricula getMatricula() {
         if (matricula == null) {
@@ -37,10 +36,10 @@ public class matriculaDao extends DaoImplement<Matricula>{
     public void setMatricula(Matricula matricula) {
         this.matricula = matricula;
     }
-    
-    public Boolean persist(){
-        matricula.setIdMatricula(all().getLongitud()+1);
+
+    public Boolean persist() {
+        matricula.setIdMatricula(all().getLongitud() + 1);
         return Persist(matricula);
     }
-    
+
 }

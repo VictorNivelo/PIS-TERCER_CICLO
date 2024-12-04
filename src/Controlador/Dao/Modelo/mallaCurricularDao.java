@@ -10,10 +10,9 @@ import Modelo.MallaC;
  * @author Victor
  */
 public class mallaCurricularDao extends DaoImplement<MallaC> {
-
     private ListaDinamica<MallaC> ListaMalla = new ListaDinamica<>();
     private MallaC mallaCurricular;
-    
+
     public mallaCurricularDao() {
         super(MallaC.class);
     }
@@ -28,7 +27,7 @@ public class mallaCurricularDao extends DaoImplement<MallaC> {
     }
 
     public MallaC getMallaCurricular() {
-        if(mallaCurricular == null){
+        if (mallaCurricular == null) {
             mallaCurricular = new MallaC();
         }
         return mallaCurricular;
@@ -37,10 +36,10 @@ public class mallaCurricularDao extends DaoImplement<MallaC> {
     public void setMallaCurricular(MallaC mallaCurricular) {
         this.mallaCurricular = mallaCurricular;
     }
-    
+
     public Boolean Persist() {
         mallaCurricular.setIdMallaCurricular(all().getLongitud() + 1);
         return Persist(mallaCurricular);
     }
-    
+
 }

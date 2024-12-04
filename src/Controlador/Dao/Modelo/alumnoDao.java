@@ -10,7 +10,6 @@ import Modelo.Cuenta;
  * @author Victor
  */
 public class alumnoDao extends DaoImplement<Alumno> {
-
     private ListaDinamica<Alumno> listaAlumnos = new ListaDinamica<>();
     private Alumno alumnos;
 
@@ -38,13 +37,12 @@ public class alumnoDao extends DaoImplement<Alumno> {
         this.alumnos = alumnos;
     }
 
-    
-    public Boolean Persist(){
-        alumnos.setIdAlumno(all().getLongitud()+1);
+    public Boolean Persist() {
+        alumnos.setIdAlumno(all().getLongitud() + 1);
         return Persist(alumnos);
     }
 
-    //METODO NUEVO AGREGAR
+    // METODO NUEVO AGREGAR
     public Alumno obtenerAlumnoPorUsuario(String usuario) {
         ListaDinamica<Alumno> listaAlumnos = all();
 
